@@ -1,7 +1,5 @@
 import logo from './logo.svg';
 import './App.css';
-//import {ProcessesList} from './components/ProcessesList';
-//import Login from './components/Login';
 
 function App() {
   return (
