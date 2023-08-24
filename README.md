@@ -72,10 +72,8 @@ The process starts up with the following logs:
 
 ```shell
 INFO:root:Starting web server on 0.0.0.0:8070
-INFO:root:HTTP gateway timeout is set to 180 seconds.
-INFO:root:API Docs at: http://0.0.0.0:8070/docs
-INFO:root:ReDoc at: http://0.0.0.0:8070/redoc
-INFO:     Started server process [3388]
+INFO:root:Web UI at: http://0.0.0.0:8070
+INFO:     Started server process [21730]
 INFO:     Waiting for application startup.
 INFO:     Application startup complete.
 INFO:     Uvicorn running on http://0.0.0.0:8070 (Press CTRL+C to quit)
@@ -91,6 +89,7 @@ sysstats start --port 8055
 
 ### Screenshots
 ![](https://raw.githubusercontent.com/amithkoujalgi/sys-stats/54bcf6dd8a5513c5d8982c3cdff3d724e6c8f740/images/processes.png)
+![](https://raw.githubusercontent.com/amithkoujalgi/sys-stats/54bcf6dd8a5513c5d8982c3cdff3d724e6c8f740/images/resources.png)
 ![](https://raw.githubusercontent.com/amithkoujalgi/sys-stats/54bcf6dd8a5513c5d8982c3cdff3d724e6c8f740/images/resources.png)
 
 ### Development

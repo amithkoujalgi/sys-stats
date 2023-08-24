@@ -61,8 +61,8 @@ app.include_router(
 async def read_root(request: Request):
     context = {
         "request": request,
-        "title": "FastAPI + Jinja Example",
-        "message": "Hello from FastAPI and Jinja!",
+        "title": "Sys Stats",
+        "message": "Sys Stats",
         "processes": stats.processes()
     }
     return templates.TemplateResponse("index.html", context)
@@ -72,8 +72,8 @@ async def read_root(request: Request):
 async def get_stats(request: Request):
     context = {
         "request": request,
-        "title": "FastAPI + Jinja Example",
-        "message": "Hello from FastAPI and Jinja!",
+        "title": "Sys Stats",
+        "message": "Sys Stats",
         "stats": stats.resource_usage()
     }
     return templates.TemplateResponse("index.html", context)
@@ -83,8 +83,8 @@ async def get_stats(request: Request):
 async def get_net_connections(request: Request):
     context = {
         "request": request,
-        "title": "FastAPI + Jinja Example",
-        "message": "Hello from FastAPI and Jinja!",
+        "title": "Sys Stats",
+        "message": "Sys Stats",
         "ports": stats.net_connections()
     }
     return templates.TemplateResponse("index.html", context)
@@ -94,7 +94,6 @@ if __name__ == "__main__":
     HOST = os.getenv("SERVER_HOST", "0.0.0.0")
     PORT = int(os.getenv("SERVER_PORT", 8070))
     HTTP_GATEWAY_TIMEOUT_SECONDS = int(os.getenv("HTTP_GATEWAY_TIMEOUT_SECONDS", 180))
-
     logging.info(f"Starting web server on {HOST}:{PORT}")
     config = uvicorn.Config(
         app,
@@ -106,11 +105,5 @@ if __name__ == "__main__":
     server_app = uvicorn.Server(config=config)
     app.debug = True
     # noinspection HttpUrlsUsage
-    logging.info(
-        f"HTTP gateway timeout is set to {HTTP_GATEWAY_TIMEOUT_SECONDS} seconds."
-    )
-    # noinspection HttpUrlsUsage
-    logging.info(f"API Docs at: http://{HOST}:{PORT}/docs")
-    # noinspection HttpUrlsUsage
-    logging.info(f"ReDoc at: http://{HOST}:{PORT}/redoc")
+    logging.info(f"Web UI at: http://{HOST}:{PORT}")
     asyncio.run(server_app.serve())

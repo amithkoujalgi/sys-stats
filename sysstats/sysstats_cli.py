@@ -40,14 +40,7 @@ def _start(port: int = 8070):
     )
     server_app = uvicorn.Server(config=config)
     app.debug = True
-    # noinspection HttpUrlsUsage
-    logging.info(
-        f"HTTP gateway timeout is set to {HTTP_GATEWAY_TIMEOUT_SECONDS} seconds."
-    )
-    # noinspection HttpUrlsUsage
-    logging.info(f"API Docs at: http://{host}:{port}/docs")
-    # noinspection HttpUrlsUsage
-    logging.info(f"ReDoc at: http://{host}:{port}/redoc")
+    logging.info(f"Web UI at: http://{host}:{port}")
     asyncio.run(server_app.serve())
 
 
