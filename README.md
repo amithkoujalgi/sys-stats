@@ -62,6 +62,8 @@ To install the package, use the following pip command:
 pip install sys-stats
 ```
 
+PyPI project: https://pypi.org/project/sys-stats/
+
 Then run,
 
 ```bash
