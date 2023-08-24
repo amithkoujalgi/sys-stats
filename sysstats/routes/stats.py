@@ -1,5 +1,6 @@
 import logging
 import time
+from sys import platform
 
 import psutil
 from fastapi import APIRouter
@@ -10,7 +11,6 @@ logger = logging.getLogger(__name__)
 router = APIRouter()
 
 
-@router.get("/processes")
 def processes():
     processlist = []
     for process in psutil.process_iter():
@@ -34,7 +34,6 @@ def processes():
     return processlist
 
 
-@router.get("/resource-usage")
 def resource_usage():
     return dict(
         memory=dict(
@@ -54,19 +53,58 @@ def resource_usage():
     )
 
 
-def get_open_ports():
-    psutil.net_connections(kind='inet')
-    open_ports = []
-    for conn in psutil.net_connections(kind='inet'):
-        try:
-            port_info = {
-                "local_address": f"{conn.laddr.ip}:{conn.laddr.port}",
-                "remote_address": f"{conn.raddr.ip}:{conn.raddr.port}" if conn.raddr else "N/A",
-                "status": conn.status,
-                "pid": conn.pid if conn.pid else "N/A",
-                "process_name": psutil.Process(conn.pid).name() if conn.pid else "N/A"
-            }
-            open_ports.append(port_info)
-        except Exception as e:
-            print(f"couldn't add {conn}")
-    return open_ports
+# def get_open_ports():
+#     psutil.net_connections(kind='inet')
+#     open_ports = []
+#     for conn in psutil.net_connections(kind='inet'):
+#         try:
+#             port_info = {
+#                 "local_address": f"{conn.laddr.ip}:{conn.laddr.port}",
+#                 "remote_address": f"{conn.raddr.ip}:{conn.raddr.port}" if conn.raddr else "N/A",
+#                 "status": conn.status,
+#                 "pid": conn.pid if conn.pid else "N/A",
+#                 "process_name": psutil.Process(conn.pid).name() if conn.pid else "N/A"
+#             }
+#             open_ports.append(port_info)
+#         except Exception as e:
+#             print(f"couldn't add {conn}")
+#     return open_ports
+
+
+def net_connections():
+    if platform == "darwin":
+        print('net-connections API unsupported on Mac OSX')
+        return []
+    elif platform == "win32":
+        print('net-connections API unsupported on Windows')
+        return []
+    elif platform == "linux" or platform == "linux2":
+        conns = psutil.net_connections(kind='inet')
+        port_mappings = []
+        for con in conns:
+            process_name = ''
+            process_owner = ''
+            process_cmd = ''
+            if con.pid is not None:
+                process = psutil.Process(pid=con.pid)
+                process_name = process.name()
+                process_owner = process.username()
+                process_cmd = ' '.join(process.cmdline())
+            port_mappings.append(
+                dict(
+                    fd=con.fd,
+                    family=con.family,
+                    type=con.type,
+                    laddr=con.laddr,
+                    raddr=con.raddr,
+                    status=con.status,
+                    pid='' if con.pid is None else con.pid,
+                    process_name=process_name,
+                    process_owner=process_owner,
+                    process_cmd=process_cmd
+                )
+            )
+        port_mappings = list(filter(lambda port: port['status'] == 'LISTEN', port_mappings))
+        return port_mappings
+    else:
+        print(f'Unknown platform - {platform}')

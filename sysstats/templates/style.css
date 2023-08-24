@@ -19,8 +19,16 @@
     width: 100% !important;
 }
 
+.port-list {
+    width: 100% !important;
+}
+
 .process-status-container {
     text-align: center;
+}
+
+.process-status-lbl {
+    font-size: 10px;
 }
 
 .contained {

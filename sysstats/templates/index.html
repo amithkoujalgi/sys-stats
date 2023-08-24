@@ -37,13 +37,18 @@
                         </a>
                     </li>
                     <li>
+                        <a href="/ports" class="nav-link py-3 px-2" title="" data-bs-toggle="tooltip"
+                           data-bs-placement="right" data-bs-original-title="Ports">
+                            <i class="bi-wifi fs-1"></i>
+                        </a>
+                    </li>
+                    <li>
                         <a href="/stats" class="nav-link py-3 px-2" title="" data-bs-toggle="tooltip"
                            data-bs-placement="right" data-bs-original-title="Resources">
                             <i class="bi-speedometer2 fs-1"></i>
                         </a>
                     </li>
                 </ul>
-
             </div>
         </div>
         <div class="col-sm p-3 min-vh-100">
@@ -51,7 +56,7 @@
             <h2>Sys Stats</h2>
             <hr/>
             {% if stats %}
-            <h4>Resource Usage</h4>
+            <h5>Resource Usage</h5>
             <div>
                 <h5>Memory</h5>
                 <table class="mem-list table">
@@ -133,8 +138,49 @@
                     <td class="process-status-container">
                         {% if process.status == 'running' %}
                         <i class="fas fa-circle" style="color: green;"></i>
+                        <p class="process-status-lbl">{{process.status}}</p>
+                        {% elif process.status == 'sleeping' %}
+                        <i class="process-status-icon fas fa-circle" style="color: orange;"></i>
+                        <p class="process-status-lbl">{{process.status}}</p>
+                        {% elif process.status == 'disk-sleep' %}
+                        <i class="process-status-icon fas fa-circle" style="color: orange;"></i>
+                        <p class="process-status-lbl">{{process.status}}</p>
+                        {% elif process.status == 'stopped' %}
+                        <i class="process-status-icon fas fa-circle" style="color: red;"></i>
+                        <p class="process-status-lbl">{{process.status}}</p>
+                        {% elif process.status == 'tracing-stop' %}
+                        <i class="process-status-icon fas fa-circle" style="color: red;"></i>
+                        <p class="process-status-lbl">{{process.status}}</p>
+                        {% elif process.status == 'zombie' %}
+                        <i class="process-status-icon fas fa-circle" style="color: darkred;"></i>
+                        <p class="process-status-lbl">{{process.status}}</p>
+                        {% elif process.status == 'dead' %}
+                        <i class="process-status-icon fas fa-circle" style="color: red;"></i>
+                        <p class="process-status-lbl">{{process.status}}</p>
+                        {% elif process.status == 'wake-kill' %}
+                        <i class="process-status-icon fas fa-circle" style="color: red;"></i>
+                        <p class="process-status-lbl">{{process.status}}</p>
+                        {% elif process.status == 'waking' %}
+                        <i class="process-status-icon fas fa-circle" style="color: cyan;"></i>
+                        <p class="process-status-lbl">{{process.status}}</p>
+                        {% elif process.status == 'idle' %}
+                        <i class="process-status-icon fas fa-circle" style="color: yellow;"></i>
+                        <p class="process-status-lbl">{{process.status}}</p>
+                        {% elif process.status == 'locked' %}
+                        <i class="process-status-icon fas fa-circle" style="color: brown;"></i>
+                        <p class="process-status-lbl">{{process.status}}</p>
+                        {% elif process.status == 'waiting' %}
+                        <i class="process-status-icon fas fa-circle" style="color: orangered;"></i>
+                        <p class="process-status-lbl">{{process.status}}</p>
+                        {% elif process.status == 'suspended' %}
+                        <i class="process-status-icon fas fa-circle" style="color: indianred;"></i>
+                        <p class="process-status-lbl">{{process.status}}</p>
+                        {% elif process.status == 'parked' %}
+                        <i class="process-status-icon fas fa-circle" style="color: palevioletred;"></i>
+                        <p class="process-status-lbl">{{process.status}}</p>
                         {% else %}
-                        <i class="fas fa-circle" style="color: red;"></i>
+                        <i class="process-status-icon fas fa-circle" style="color: black;"></i>
+                        <p class="process-status-lbl">{{process.status}}</p>
                         {% endif %}
                     </td>
                     <td>{{ process.running_since }}</td>
@@ -149,6 +195,36 @@
                             <i class="bi-trash fs-1"></i>
                         </a>
                     </td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+            {% endif %}
+
+            {% if ports %}
+            <h5>Ports</h5>
+            <table class="port-list table w-auto small">
+                <thead>
+                <tr>
+                    <th scope="col">PID</th>
+                    <th scope="col">Bind Host</th>
+                    <th scope="col">Bind Port</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">User</th>
+                    <th scope="col">Process</th>
+                    <th scope="col">Command</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for port in ports %}
+                <tr>
+                    <td scope="row">{{ port.pid }}</td>
+                    <td>{{ port.laddr.ip }}</td>
+                    <td>{{ port.laddr.port }}</td>
+                    <td>{{ port.status }}</td>
+                    <td>{{ port.process_owner }}</td>
+                    <td>{{ port.process_name }}</td>
+                    <td>{{ port.process_cmd }}</td>
                 </tr>
                 {% endfor %}
                 </tbody>

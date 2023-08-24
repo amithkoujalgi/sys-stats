@@ -79,6 +79,17 @@ async def get_stats(request: Request):
     return templates.TemplateResponse("index.html", context)
 
 
+@app.get("/ports", response_class=HTMLResponse)
+async def get_net_connections(request: Request):
+    context = {
+        "request": request,
+        "title": "FastAPI + Jinja Example",
+        "message": "Hello from FastAPI and Jinja!",
+        "ports": stats.net_connections()
+    }
+    return templates.TemplateResponse("index.html", context)
+
+
 if __name__ == "__main__":
     HOST = os.getenv("SERVER_HOST", "0.0.0.0")
     PORT = int(os.getenv("SERVER_PORT", 8070))
