@@ -88,9 +88,9 @@ sysstats start --port 8055
 ```
 
 ### Screenshots
-![](https://raw.githubusercontent.com/amithkoujalgi/sys-stats/54bcf6dd8a5513c5d8982c3cdff3d724e6c8f740/images/processes.png)
-![](https://raw.githubusercontent.com/amithkoujalgi/sys-stats/54bcf6dd8a5513c5d8982c3cdff3d724e6c8f740/images/resources.png)
-![](https://raw.githubusercontent.com/amithkoujalgi/sys-stats/54bcf6dd8a5513c5d8982c3cdff3d724e6c8f740/images/resources.png)
+![](./images/processes.png)
+![](./images/resources.png)
+![](.images/ports.png)
 
 ### Development
 
