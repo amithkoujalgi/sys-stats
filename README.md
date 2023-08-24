@@ -108,6 +108,11 @@ I welcome contributions!
 Whether it's reporting a bug, proposing an enhancement, or helping with code, please refer to the contribution
 guidelines to get started.
 
+#### Areas of improvement 
+
+- Auto-refreshing UI views
+- Web-socket enabled comms
+
 ### License
 
 The project is released under the MIT License. For more details, consult the [License](./LICENSE) file.
