@@ -1,0 +1,28 @@
+.sidebar {
+    background-color: #343a40;
+    color: white;
+}
+
+.content {
+    background-color: #f8f9fa;
+}
+
+.full-height {
+    min-height: 100vh;
+}
+
+.fs-1 {
+    font-size: 1.5rem !important;
+}
+
+.process-list {
+    width: 100% !important;
+}
+
+.process-status-container {
+    text-align: center;
+}
+
+.contained {
+    word-break: break-word;
+}

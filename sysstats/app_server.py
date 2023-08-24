@@ -1,12 +1,18 @@
 import asyncio
 import logging
 import os
+from pathlib import Path
 
 import uvicorn
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from starlette.requests import Request
+from starlette.responses import HTMLResponse
+from starlette.staticfiles import StaticFiles
+from starlette.templating import Jinja2Templates
 
-from server.route import stats
+import sysstats
+from sysstats.routes import stats
 
 app_title = "Sys Stats API"
 app_version = "0.0.1"
@@ -32,6 +38,11 @@ app = FastAPI(
         "tryItOutEnabled": True,
     },
 )
+
+templates_path = os.path.join(Path(sysstats.__file__).parent, 'templates')
+app.mount("/static", StaticFiles(directory=templates_path), name="static")
+templates = Jinja2Templates(directory=templates_path)
+
 app.add_middleware(
     CORSMiddleware,
     allow_origins=origins,
@@ -44,6 +55,29 @@ app.include_router(
     prefix="/api/stats",
     tags=["stats"],
 )
+
+
+@app.get("/", response_class=HTMLResponse)
+async def read_root(request: Request):
+    context = {
+        "request": request,
+        "title": "FastAPI + Jinja Example",
+        "message": "Hello from FastAPI and Jinja!",
+        "processes": stats.processes()
+    }
+    return templates.TemplateResponse("index.html", context)
+
+
+@app.get("/stats", response_class=HTMLResponse)
+async def get_stats(request: Request):
+    context = {
+        "request": request,
+        "title": "FastAPI + Jinja Example",
+        "message": "Hello from FastAPI and Jinja!",
+        "stats": stats.resource_usage()
+    }
+    return templates.TemplateResponse("index.html", context)
+
 
 if __name__ == "__main__":
     HOST = os.getenv("SERVER_HOST", "0.0.0.0")

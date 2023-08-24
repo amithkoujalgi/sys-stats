@@ -1,0 +1,162 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!--suppress ALL -->
+<html lang="">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<link rel="Icon" type="image/ico" href="#"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+      integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+        crossorigin="anonymous"></script>
+<script src="static/index.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+<link href="static/style.css" rel="stylesheet">
+<head>
+    <title>Sys Stats</title>
+</head>
+
+<body>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-auto bg-light sticky-top">
+            <div class="d-flex flex-sm-column flex-row flex-nowrap bg-light align-items-center sticky-top">
+                <a href="#" class="d-block p-3 link-dark text-decoration-none" title="" data-bs-toggle="tooltip"
+                   data-bs-placement="right" data-bs-original-title="Sys Stats">
+                    <i class="bi-clipboard-heart fs-1"></i>
+                </a>
+                <ul class="nav nav-pills nav-flush flex-sm-column flex-row flex-nowrap mb-auto mx-auto text-center justify-content-between w-100 px-3 align-items-center">
+                    <li class="nav-item">
+                        <a href="/" class="nav-link py-3 px-2" title="" data-bs-toggle="tooltip"
+                           data-bs-placement="right" data-bs-original-title="Processes">
+                            <i class="bi-list-nested fs-1"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/stats" class="nav-link py-3 px-2" title="" data-bs-toggle="tooltip"
+                           data-bs-placement="right" data-bs-original-title="Resources">
+                            <i class="bi-speedometer2 fs-1"></i>
+                        </a>
+                    </li>
+                </ul>
+
+            </div>
+        </div>
+        <div class="col-sm p-3 min-vh-100">
+            <!-- content -->
+            <h2>Sys Stats</h2>
+            <hr/>
+            {% if stats %}
+            <h4>Resource Usage</h4>
+            <div>
+                <h5>Memory</h5>
+                <table class="mem-list table">
+                    <thead>
+                    <tr>
+                        <th scope="col">Total</th>
+                        <th scope="col">Used</th>
+                        <th scope="col">Available</th>
+                        <th scope="col">Used (%)</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td scope="row">{{ stats.memory.total }} MB</td>
+                        <td>{{ stats.memory.used }} MB</td>
+                        <td>{{ stats.memory.available }} MB</td>
+                        <td>{{ stats.memory.percent }}%</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div>
+                <h5>CPU</h5>
+                <table class="cpu-list table">
+                    <thead>
+                    <tr>
+                        <th scope="col">Combined (%)</th>
+                        <th scope="col">Per Core (%)</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td scope="row">{{ stats.cpu_usage.combined }} %</td>
+                        <td>
+                            <table class="cpu-core-list table">
+                                <thead>
+                                <tr>
+                                    <th scope="col">Core</th>
+                                    <th scope="col">Usage</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for cpu in stats.cpu_usage.per_cpu %}
+                                <tr>
+                                    <td>{{ loop.index }}</td>
+                                    <td>{{ cpu }}</td>
+                                </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            {% endif %}
+            {% if processes %}
+            <h5>Processes</h5>
+            <table class="process-list table w-auto small">
+                <thead>
+                <tr>
+                    <th scope="col">PID</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">User</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Running Since</th>
+                    <th scope="col">Parent</th>
+                    <th scope="col">Command</th>
+                    <th scope="col">Memory usage</th>
+                    <th scope="col">CPU usage</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for process in processes %}
+                <tr>
+                    <td scope="row">{{ process.pid }}</td>
+                    <td>{{ process.name }}</td>
+                    <td>{{ process.username }}</td>
+                    <td class="process-status-container">
+                        {% if process.status == 'running' %}
+                        <i class="fas fa-circle" style="color: green;"></i>
+                        {% else %}
+                        <i class="fas fa-circle" style="color: red;"></i>
+                        {% endif %}
+                    </td>
+                    <td>{{ process.running_since }}</td>
+                    <td>{{ process.parent }}</td>
+                    <td class="contained">{{ process.cmdline }}</td>
+                    <td>{{ process.memory_usage }} MB</td>
+                    <td>{{ process.cpu_usage }}</td>
+                    <td>
+                        <a href="#" id='pid-{{ process.pid }}' class="nav-link py-3 px-2 kill-process" title=""
+                           data-bs-toggle="tooltip"
+                           data-bs-placement="right" data-bs-original-title="Kill Process">
+                            <i class="bi-trash fs-1"></i>
+                        </a>
+                    </td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+            {% endif %}
+        </div>
+    </div>
+</div>
+</body>
+
+</html>

@@ -5,3 +5,6 @@ requests
 prettytable
 PyYaml
 pydantic
+psutil
+jinja2
+humanfriendly
