@@ -90,7 +90,7 @@ sysstats start --port 8055
 ### Screenshots
 ![](./images/processes.png)
 ![](./images/resources.png)
-![](.images/ports.png)
+![](./images/ports.png)
 
 ### Development
 
