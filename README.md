@@ -39,6 +39,15 @@ The development of that thought, resulted in a tool that is:
 - **Has Real-Time Monitoring:** Monitor CPU usage, memory usage, disk space, and more in real time.
 - **Has Cross-Platform support:** Compatible with various operating systems, including macOS, and Linux.
 
+### Where can I run this?
+
+While it can be run practically on any *nix systems, it's best suited for running on systems that run headless (server/non-windowed mode) or remotely which need monitoring over the web.
+For example:
+- you can set it up on docker containers which need to be monitored remotely.
+- if you have multiple on-prem servers in a private network that need monitoring at individual host level, you can host this tool on each server and access it over web interface.
+
+  The possibilities are endless. The tool will evolve over time to get better.
+
 ### Features
 
 - List running processes
