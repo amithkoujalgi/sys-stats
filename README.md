@@ -111,6 +111,6 @@ guidelines to get started.
 
 ### License
 
-The project is released under the MIT License. For more details, consult the LICENSE file.
+The project is released under the MIT License. For more details, consult the [License](./LICENSE) file.
 
 
