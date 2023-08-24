@@ -44,7 +44,7 @@ setup(
     },
     entry_points={
         'console_scripts': [
-            'sysstats-cli = sysstats.sysstats_cli:main'
+            'sysstats = sysstats.sysstats_cli:main'
         ],
     },
     zip_safe=False,
