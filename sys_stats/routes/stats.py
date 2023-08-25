@@ -111,40 +111,91 @@ def __list_open_ports_with_lsof():
     return open_ports
 
 
-def net_connections():
-    if platform == "darwin":
-        # logger.error('net-connections API unsupported on Mac OSX')
-        return __list_open_ports_with_lsof()
-    elif platform == "win32":
-        logger.error('net-connections API unsupported on Windows')
-        return []
-    elif platform == "linux" or platform == "linux2":
-        conns = psutil.net_connections(kind='inet')
-        port_mappings = []
-        for con in conns:
-            process_name = ''
-            process_owner = ''
-            process_cmd = ''
-            if con.pid is not None:
-                process = psutil.Process(pid=con.pid)
-                process_name = process.name()
-                process_owner = process.username()
-                process_cmd = ' '.join(process.cmdline())
-            port_mappings.append(
-                dict(
-                    fd=con.fd,
-                    family=con.family,
-                    type=con.type,
-                    laddr=con.laddr,
-                    raddr=con.raddr,
-                    status=con.status,
-                    pid='' if con.pid is None else con.pid,
+def __list_open_ports_netstat_windows():
+    """
+    Windows specific implementation
+    :return:
+    """
+    open_ports = []
+    try:
+        output = subprocess.check_output(['netstat', '-ano'], universal_newlines=True)
+        lines = output.split('\n')
+        for line in lines[4:]:
+            parts = line.split()
+            if len(parts) > 0 and parts[0] == 'TCP' and 'LISTENING' in parts:
+                pid = int(parts[4])
+                process_name = ''
+                process_owner = ''
+                process_cmd = ''
+                if pid > 0:
+                    process = psutil.Process(pid=pid)
+                    process_name = process.name()
+                port = parts[1].split(':')[-1]
+                host = parts[1].replace(f':{port}', '')
+                listen_port = dict(
+                    fd='NA',
+                    family='NA',
+                    type='NA',
+                    laddr=dict(ip=host, port=port),
+                    raddr='NA',
+                    status='LISTEN',
+                    pid=pid,
                     process_name=process_name,
                     process_owner=process_owner,
                     process_cmd=process_cmd
                 )
+                open_ports.append(listen_port)
+    except subprocess.CalledProcessError:
+        pass
+    return open_ports
+
+
+def __list_open_ports_standard():
+    """
+    Generic *nix implementation
+    :return:
+    """
+    conns = psutil.net_connections(kind='inet')
+    port_mappings = []
+    for con in conns:
+        process_name = ''
+        process_owner = ''
+        process_cmd = ''
+        if con.pid is not None:
+            process = psutil.Process(pid=con.pid)
+            process_name = process.name()
+            process_owner = process.username()
+            process_cmd = ' '.join(process.cmdline())
+        port_mappings.append(
+            dict(
+                fd=con.fd,
+                family=con.family,
+                type=con.type,
+                laddr=con.laddr,
+                raddr=con.raddr,
+                status=con.status,
+                pid='' if con.pid is None else con.pid,
+                process_name=process_name,
+                process_owner=process_owner,
+                process_cmd=process_cmd
             )
-        port_mappings = list(filter(lambda port: port['status'] == 'LISTEN', port_mappings))
-        return port_mappings
+        )
+    port_mappings = list(filter(lambda port: port['status'] == 'LISTEN', port_mappings))
+    return port_mappings
+
+
+def net_connections():
+    """
+    Lists TCP ports open for listening
+    :return:
+    """
+    if platform == "darwin":
+        # logger.error('net-connections API unsupported on Mac OSX')
+        return __list_open_ports_with_lsof()
+    elif platform == "win32":
+        # logger.error('net-connections API unsupported on Windows')
+        return __list_open_ports_netstat_windows()
+    elif platform == "linux" or platform == "linux2":
+        return __list_open_ports_standard()
     else:
         logger.error(f'Unknown platform - {platform}')
