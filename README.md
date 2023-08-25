@@ -42,17 +42,25 @@ The development of that thought, resulted in a tool that is:
 - **Has Real-Time Monitoring:** Monitor CPU usage, memory usage, disk space, and more in real time.
 - **Has Cross-Platform support:** Compatible with various operating systems, including macOS, and Linux.
 
+### For whom is this tool intended?
+
+While this tool could be used by anybody who is interested in simple system monitoring, it is best
+suited for developers or system admins or someone who wants to monitor a headless (remote server/non-windowed mode
+server) computer which over a web interface.
+
 ### Where can I run this?
 
-While it can be run practically on any *nix systems, it's best suited for running on systems that run headless (
-server/non-windowed mode) or remotely which need monitoring over the web.
-For example:
+It can practically run on any system, and due to its lightweight nature, it can operate on computers with low resource
+specifications.
 
-- you can set it up on docker containers which need to be monitored remotely.
+Some of the use-cases:
+
+- you can set it up on Docker containers which need to be monitored remotely.
 - if you have multiple on-prem servers in a private network that need monitoring at individual host level, you can host
   this tool on each server and access it over web interface.
+- you can run it on a Raspberry Pi (potentially?). Although I've not tested the tool on a Raspberry platform 😅
 
-  The possibilities are endless. The tool will evolve over time to get better.
+The possibilities are endless and the tool will evolve over time to get better.
 
 ### Features
 
@@ -141,7 +149,6 @@ This creates a wheel distribution under `dist` directory.
 Contributions are most welcome!
 Whether it's reporting a bug, proposing an enhancement, or helping with code - any sort of contribution is much
 appreciated.
-Please refer to the contribution guidelines to get started.
 
 ### License
 
