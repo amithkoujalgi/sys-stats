@@ -9,7 +9,7 @@ An open-source Python tool to provide system stats over a web interface.
    Python
 
 .. figure::
-   https://img.shields.io/badge/sys--stats:_latest_version-0.0.4-green.svg
+   https://img.shields.io/badge/sys--stats:_latest_version-0.0.7-green.svg
    :alt: sys-stats
 
    sys-stats
