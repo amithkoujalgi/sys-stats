@@ -44,10 +44,13 @@ The development of that thought, resulted in a tool that is:
 
 ### Where can I run this?
 
-While it can be run practically on any *nix systems, it's best suited for running on systems that run headless (server/non-windowed mode) or remotely which need monitoring over the web.
+While it can be run practically on any *nix systems, it's best suited for running on systems that run headless (
+server/non-windowed mode) or remotely which need monitoring over the web.
 For example:
+
 - you can set it up on docker containers which need to be monitored remotely.
-- if you have multiple on-prem servers in a private network that need monitoring at individual host level, you can host this tool on each server and access it over web interface.
+- if you have multiple on-prem servers in a private network that need monitoring at individual host level, you can host
+  this tool on each server and access it over web interface.
 
   The possibilities are endless. The tool will evolve over time to get better.
 
@@ -120,22 +123,24 @@ bash build.sh
 
 This creates a wheel distribution under `dist` directory.
 
-
-#### Areas of improvement 
+#### Areas of improvement
 
 - Auto-refreshing UI views
 - Web-socket enabled comms
+- Cache the data in memory to record resource utilisation for a given time period (for 30 mins, or more) - useful for
+  plotting resource utilisation graphs.
 - Security measures/user authentication
 - Searching for processes by PID, process name or command
 - UI improvements - look and feel and slickness
 - Ability to start the server in background (-d mode)
 - Ability to pass an external JSON/YAML configuration file to configure bind address, logging path, etc.
-- Support for cluster setup (may be?) 
+- Support for cluster setup (may be?)
 
 #### Get Involved
 
 Contributions are most welcome!
-Whether it's reporting a bug, proposing an enhancement, or helping with code - any sort of contribution is much appreciated.
+Whether it's reporting a bug, proposing an enhancement, or helping with code - any sort of contribution is much
+appreciated.
 Please refer to the contribution guidelines to get started.
 
 ### License

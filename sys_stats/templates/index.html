@@ -26,7 +26,7 @@
         <div class="col-sm-auto bg-light sticky-top">
             <div class="d-flex flex-sm-column flex-row flex-nowrap bg-light align-items-center sticky-top">
                 <a href="#" class="d-block p-3 link-dark text-decoration-none" title="" data-bs-toggle="tooltip"
-                   data-bs-placement="right" data-bs-original-title="Sys Stats" style="padding-top: 30px !important;">
+                   data-bs-placement="right" data-bs-original-title="Sys Stats" style="padding-top: 30px !important; padding-bottom: 30px !important;">
                     <i class="bi-clipboard-heart fs-1"></i>
                 </a>
                 <ul class="nav nav-pills nav-flush flex-sm-column flex-row flex-nowrap mb-auto mx-auto text-center justify-content-between w-100 px-3 align-items-center">
@@ -46,6 +46,24 @@
                         <a href="/stats" class="nav-link py-3 px-2" title="" data-bs-toggle="tooltip"
                            data-bs-placement="right" data-bs-original-title="Resources">
                             <i class="bi-speedometer2 fs-1"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="nav-link py-3 px-2" title="" data-bs-toggle="tooltip"
+                           data-bs-placement="right" data-bs-original-title="Settings">
+                            <i class="bi-gear-wide-connected fs-1"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="nav-link py-3 px-2" title="" data-bs-toggle="tooltip"
+                           data-bs-placement="right" data-bs-original-title="Help">
+                            <i class="bi-info-lg fs-1"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://github.com/amithkoujalgi/sys-stats/issues" class="nav-link py-3 px-2" title="" data-bs-toggle="tooltip"
+                           data-bs-placement="right" data-bs-original-title="Report issues" target="_blank">
+                            <i class="bi-exclamation-triangle fs-1"></i>
                         </a>
                     </li>
                 </ul>
@@ -81,10 +99,10 @@
                     </thead>
                     <tbody>
                     <tr>
-                        <td scope="row">{{ stats.memory.total }} MB</td>
-                        <td>{{ stats.memory.used }} MB</td>
-                        <td>{{ stats.memory.available }} MB</td>
-                        <td>{{ stats.memory.percent }}%</td>
+                        <td scope="row" style="font-family: monospace">{{ stats.memory.total }} MB</td>
+                        <td style="font-family: monospace">{{ stats.memory.used }} MB</td>
+                        <td style="font-family: monospace">{{ stats.memory.available }} MB</td>
+                        <td style="font-family: monospace">{{ stats.memory.percent }}%</td>
                     </tr>
                     </tbody>
                 </table>
@@ -100,7 +118,7 @@
                     </thead>
                     <tbody>
                     <tr>
-                        <td scope="row">{{ stats.cpu_usage.combined }} %</td>
+                        <td scope="row" style="font-family: monospace">{{ stats.cpu_usage.combined }} %</td>
                         <td>
                             <table class="cpu-core-list table">
                                 <thead>
@@ -112,8 +130,8 @@
                                 <tbody>
                                 {% for cpu in stats.cpu_usage.per_cpu %}
                                 <tr>
-                                    <td>{{ loop.index }}</td>
-                                    <td>{{ cpu }}</td>
+                                    <td style="font-family: monospace">{{ loop.index }}</td>
+                                    <td style="font-family: monospace">{{ cpu }}</td>
                                 </tr>
                                 {% endfor %}
                                 </tbody>
@@ -143,7 +161,7 @@
                 <tbody>
                 {% for process in processes %}
                 <tr>
-                    <td scope="row">{{ process.pid }}</td>
+                    <td scope="row" style="font-family: monospace">{{ process.pid }}</td>
                     <td>{{ process.name }}</td>
                     <td>{{ process.username }}</td>
                     <td class="process-status-container">
@@ -197,8 +215,8 @@
                     <td>{{ process.running_since }}</td>
                     <td>{{ process.parent }}</td>
                     <td class="contained">{{ process.cmdline }}</td>
-                    <td>{{ process.memory_usage }} MB</td>
-                    <td>{{ process.cpu_usage }}</td>
+                    <td style="font-family: monospace">{{ process.memory_usage }} MB</td>
+                    <td style="font-family: monospace">{{ process.cpu_usage }}%</td>
                     <td>
                         <a href="#" id='pid-{{ process.pid }}' class="nav-link py-3 px-2 kill-process" title=""
                            data-bs-toggle="tooltip"
@@ -218,9 +236,8 @@
                 <thead>
                 <tr>
                     <th scope="col">PID</th>
-                    <th scope="col">Bind Host</th>
                     <th scope="col">Bind Port</th>
-                    <th scope="col">Status</th>
+                    <th scope="col">Bind Host</th>
                     <th scope="col">User</th>
                     <th scope="col">Process</th>
                     <th scope="col">Command</th>
@@ -229,10 +246,9 @@
                 <tbody>
                 {% for port in ports %}
                 <tr>
-                    <td scope="row">{{ port.pid }}</td>
+                    <td scope="row" style="font-family: monospace">{{ port.pid }}</td>
+                    <td style="font-family: monospace"><b>{{ port.laddr.port }}</b></td>
                     <td>{{ port.laddr.ip }}</td>
-                    <td>{{ port.laddr.port }}</td>
-                    <td>{{ port.status }}</td>
                     <td>{{ port.process_owner }}</td>
                     <td>{{ port.process_name }}</td>
                     <td>{{ port.process_cmd }}</td>
