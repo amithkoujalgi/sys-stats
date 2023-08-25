@@ -38,13 +38,13 @@ setup(
     install_requires=get_requirements_to_install(),
     author='Amith Koujalgi',
     author_email='',
-    packages=find_packages(include=['sysstats', 'sysstats.routes']),
+    packages=find_packages(include=['sys_stats', 'sys_stats.routes']),
     package_data={
-        'sysstats': ['templates/*'],
+        'sys_stats': ['templates/*'],
     },
     entry_points={
         'console_scripts': [
-            'sysstats = sysstats.sysstats_cli:main'
+            'sys-stats = sys_stats.sys_stats_cli:main'
         ],
     },
     zip_safe=False,

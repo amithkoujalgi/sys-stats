@@ -1,5 +1,6 @@
 import logging
 import time
+import traceback
 from sys import platform
 
 import psutil
@@ -16,20 +17,22 @@ def processes():
     for process in psutil.process_iter():
         process: psutil.Process
         try:
-            processlist.append(dict(
-                name=process.name(),
-                pid=process.pid,
-                status=process.status(),
-                create_time=process.create_time(),
-                running_since=format_timespan(time.time() - process.create_time()),
-                parent=process.parent().name(),
-                cmdline=' '.join(process.cmdline()),
-                username=process.username(),
-                memory_usage=round(process.memory_info().rss / (1024 * 1024), 2),
-                cpu_usage=round(process.cpu_percent(), 2)
-            ))
+            processlist.append(
+                dict(
+                    name=process.name(),
+                    pid=process.pid,
+                    status=process.status(),
+                    create_time=process.create_time(),
+                    running_since=format_timespan(time.time() - process.create_time()),
+                    parent=process.parent().name(),
+                    cmdline=' '.join(process.cmdline()),
+                    username=process.username(),
+                    memory_usage=round(process.memory_info().rss / (1024 * 1024), 2),
+                    cpu_usage=round(process.cpu_percent(), 2)
+                )
+            )
         except Exception as e:
-            print(f'Could not add process - {process.name()}. Error: {e}')
+            logger.error(f'Could not add process - {process.name()}. Error: {e}')
     processlist = sorted(processlist, key=lambda x: x['cpu_usage'], reverse=True)
     return processlist
 
@@ -53,30 +56,27 @@ def resource_usage():
     )
 
 
-# def get_open_ports():
-#     psutil.net_connections(kind='inet')
-#     open_ports = []
-#     for conn in psutil.net_connections(kind='inet'):
-#         try:
-#             port_info = {
-#                 "local_address": f"{conn.laddr.ip}:{conn.laddr.port}",
-#                 "remote_address": f"{conn.raddr.ip}:{conn.raddr.port}" if conn.raddr else "N/A",
-#                 "status": conn.status,
-#                 "pid": conn.pid if conn.pid else "N/A",
-#                 "process_name": psutil.Process(conn.pid).name() if conn.pid else "N/A"
-#             }
-#             open_ports.append(port_info)
-#         except Exception as e:
-#             print(f"couldn't add {conn}")
-#     return open_ports
+def kill_process_by_pid(pid: int) -> bool:
+    try:
+        process = psutil.Process(pid)
+        process.terminate()
+        process.wait()
+        logger.info(f"Process with PID {pid} has been terminated.")
+        return True
+    except psutil.NoSuchProcess:
+        logger.error(f"No process found with PID {pid}.")
+        return True
+    except Exception as e:
+        logger.error(traceback.format_exc())
+        return False
 
 
 def net_connections():
     if platform == "darwin":
-        print('net-connections API unsupported on Mac OSX')
+        logger.error('net-connections API unsupported on Mac OSX')
         return []
     elif platform == "win32":
-        print('net-connections API unsupported on Windows')
+        logger.error('net-connections API unsupported on Windows')
         return []
     elif platform == "linux" or platform == "linux2":
         conns = psutil.net_connections(kind='inet')
@@ -107,4 +107,4 @@ def net_connections():
         port_mappings = list(filter(lambda port: port['status'] == 'LISTEN', port_mappings))
         return port_mappings
     else:
-        print(f'Unknown platform - {platform}')
+        logger.error(f'Unknown platform - {platform}')

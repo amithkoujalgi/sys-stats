@@ -6,7 +6,7 @@ import os
 
 import uvicorn
 
-from sysstats.app_server import app
+from sys_stats.app_server import app
 
 
 def main():

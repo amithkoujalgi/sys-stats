@@ -1,8 +1,10 @@
 # sys-stats
 
-An open-source Python library to provide system stats over a web interface
+An open-source Python library to provide system stats over a web interface.
 
 ![Python](https://img.shields.io/badge/Python-3.8%2B-blue.svg)
+
+![sys-stats](https://img.shields.io/badge/sys--stats:_latest_version-0.0.4-green.svg)
 
 ## Table of Contents
 
@@ -10,7 +12,6 @@ An open-source Python library to provide system stats over a web interface
 - [Features](#features)
 - [Installation](#installation)
 - [Development](#development)
-- [License](#license)
 
 ### Introduction
 
@@ -51,8 +52,8 @@ For example:
 ### Features
 
 - List running processes
+- List processes listening on inet ports
 - Show hardware metrics - CPU/Memory usage, etc
-- Port bindings [WIP]
 
 ### Installation
 
@@ -67,7 +68,7 @@ PyPI project: https://pypi.org/project/sys-stats/
 Then run,
 
 ```bash
-sysstats start
+sys-stats start
 ```
 
 The process starts up with the following logs:
@@ -90,11 +91,22 @@ sysstats start --port 8055
 ```
 
 ### Screenshots
+
+Listing processes
 ![](images/processes.png)
+
+Resource utilisation
 ![](images/resources.png)
+
+List of processes listening on inet ports
 ![](images/ports.png)
 
 ### Development
+
+#### Requirements
+
+- macOS or Ubuntu or any other *nix distros
+- Python 3.8+
 
 #### Building from source
 
@@ -104,16 +116,22 @@ Run:
 bash build.sh
 ```
 
+#### Areas of improvement 
+
+- Auto-refreshing UI views
+- Web-socket enabled comms
+- Security measures/user authentication
+- Searching for processes by PID, process name or command
+- UI improvements - look and feel and slickness
+- Ability to start the server in background (-d mode)
+- Ability to pass an external JSON/YAML configuration file to configure bind address, logging path, etc.
+
+
 #### Get Involved
 
 I welcome contributions!
 Whether it's reporting a bug, proposing an enhancement, or helping with code, please refer to the contribution
 guidelines to get started.
-
-#### Areas of improvement 
-
-- Auto-refreshing UI views
-- Web-socket enabled comms
 
 ### License
 

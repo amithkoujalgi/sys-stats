@@ -11,8 +11,8 @@ from starlette.responses import HTMLResponse
 from starlette.staticfiles import StaticFiles
 from starlette.templating import Jinja2Templates
 
-import sysstats
-from sysstats.routes import stats
+import sys_stats
+from sys_stats.routes import stats
 
 app_title = "Sys Stats API"
 app_version = "0.0.1"
@@ -39,7 +39,7 @@ app = FastAPI(
     },
 )
 
-templates_path = os.path.join(Path(sysstats.__file__).parent, 'templates')
+templates_path = os.path.join(Path(sys_stats.__file__).parent, 'templates')
 app.mount("/static", StaticFiles(directory=templates_path), name="static")
 templates = Jinja2Templates(directory=templates_path)
 
@@ -66,6 +66,11 @@ async def read_root(request: Request):
         "processes": stats.processes()
     }
     return templates.TemplateResponse("index.html", context)
+
+
+@app.get("/kill/{pid}")
+async def kill_process_by_pid(pid: int):
+    return stats.kill_process_by_pid(pid)
 
 
 @app.get("/stats", response_class=HTMLResponse)
