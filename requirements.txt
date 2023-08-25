@@ -8,3 +8,5 @@ pydantic
 psutil
 jinja2
 humanfriendly
+
+pypandoc

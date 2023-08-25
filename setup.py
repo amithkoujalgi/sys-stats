@@ -33,7 +33,7 @@ def get_requirements_to_install() -> List[str]:
 
 def get_description() -> str:
     __curr_location__ = os.path.realpath(os.path.join(os.getcwd(), os.path.dirname(__file__)))
-    requirements_txt_file_as_str = f'{__curr_location__}/README.md'
+    requirements_txt_file_as_str = f'{__curr_location__}/README.rst'
     with open(requirements_txt_file_as_str, 'r') as reqfile:
         desc = reqfile.read()
     return desc
@@ -46,7 +46,7 @@ setup(
     long_description=get_description(),
     install_requires=get_requirements_to_install(),
     author='Amith Koujalgi',
-    author_email='',
+    author_email='koujalgi.amith@gmail.com',
     packages=find_packages(include=['sys_stats', 'sys_stats.api']),
     package_data={
         'sys_stats': ['templates/*'],
