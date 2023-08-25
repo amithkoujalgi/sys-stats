@@ -1,4 +1,5 @@
 import logging
+import subprocess
 import time
 import traceback
 from sys import platform
@@ -8,6 +9,7 @@ from humanfriendly import format_timespan
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
+
 
 def processes():
     processlist = []
@@ -68,10 +70,51 @@ def kill_process_by_pid(pid: int) -> bool:
         return False
 
 
+def __list_open_ports_with_lsof():
+    """
+    macOS specific implementation
+    :return:
+    """
+    open_ports = []
+    try:
+        cmd = ['lsof', '-i', '-n', '-P']
+        print(f'running: {" ".join(cmd)}')
+        output = subprocess.check_output(cmd, universal_newlines=True)
+        lines = output.split('\n')
+        for line in lines[1:]:
+            parts = line.split()
+            if '(LISTEN)' in parts and 'IPv4' in parts:
+                pid = int(parts[1])
+                process_name = ''
+                process_owner = ''
+                process_cmd = ''
+                if pid > 0:
+                    process = psutil.Process(pid=pid)
+                    process_name = process.name()
+                    process_owner = process.username()
+                    process_cmd = ' '.join(process.cmdline())
+                listen_port = dict(
+                    fd='NA',
+                    family='NA',
+                    type='NA',
+                    laddr=dict(ip=parts[8].split(':')[0], port=parts[8].split(':')[1]),
+                    raddr='NA',
+                    status='LISTEN',
+                    pid=pid,
+                    process_name=process_name,
+                    process_owner=process_owner,
+                    process_cmd=process_cmd
+                )
+                open_ports.append(listen_port)
+    except subprocess.CalledProcessError:
+        pass
+    return open_ports
+
+
 def net_connections():
     if platform == "darwin":
-        logger.error('net-connections API unsupported on Mac OSX')
-        return []
+        # logger.error('net-connections API unsupported on Mac OSX')
+        return __list_open_ports_with_lsof()
     elif platform == "win32":
         logger.error('net-connections API unsupported on Windows')
         return []
