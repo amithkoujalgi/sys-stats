@@ -15,8 +15,25 @@
     font-size: 1.5rem !important;
 }
 
-.gh-link{
-float:right;
+.expandable-cell {
+    max-width: 150px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    cursor: pointer;
+}
+
+.expanded {
+    white-space: normal;
+}
+
+.search-bar {
+    padding-top: 10px;
+    padding-bottom: 20px;
+}
+
+.gh-link {
+    float: right;
 }
 
 .process-list {

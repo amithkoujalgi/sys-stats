@@ -3,6 +3,17 @@
 $(function () {
     $('[data-bs-toggle="tooltip"]').tooltip();
 })
+$(document).ready(function () {
+    $('.expandable-cell').click(function () {
+        let $cell = $(this);
+        let isExpanded = $cell.hasClass('expanded');
+        if (isExpanded) {
+            $cell.removeClass('expanded');
+        } else {
+            $cell.addClass('expanded');
+        }
+    });
+});
 
 $(document).on('click', '.kill-process', function () {
     if (confirm('Are you sure you want to kill this process?')) {

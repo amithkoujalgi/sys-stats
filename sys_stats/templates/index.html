@@ -26,7 +26,8 @@
         <div class="col-sm-auto bg-light sticky-top">
             <div class="d-flex flex-sm-column flex-row flex-nowrap bg-light align-items-center sticky-top">
                 <a href="#" class="d-block p-3 link-dark text-decoration-none" title="" data-bs-toggle="tooltip"
-                   data-bs-placement="right" data-bs-original-title="Sys Stats" style="padding-top: 30px !important; padding-bottom: 30px !important;">
+                   data-bs-placement="right" data-bs-original-title="Sys Stats"
+                   style="padding-top: 30px !important; padding-bottom: 30px !important;">
                     <i class="bi-clipboard-heart fs-1"></i>
                 </a>
                 <ul class="nav nav-pills nav-flush flex-sm-column flex-row flex-nowrap mb-auto mx-auto text-center justify-content-between w-100 px-3 align-items-center">
@@ -61,7 +62,8 @@
                         </a>
                     </li>
                     <li>
-                        <a href="https://github.com/amithkoujalgi/sys-stats/issues" class="nav-link py-3 px-2" title="" data-bs-toggle="tooltip"
+                        <a href="https://github.com/amithkoujalgi/sys-stats/issues" class="nav-link py-3 px-2" title=""
+                           data-bs-toggle="tooltip"
                            data-bs-placement="right" data-bs-original-title="Report issues" target="_blank">
                             <i class="bi-exclamation-triangle fs-1"></i>
                         </a>
@@ -144,6 +146,12 @@
             {% endif %}
             {% if processes %}
             <h5>Processes</h5>
+            <div class="input-group search-bar">
+                <input type="search" class="form-control rounded" placeholder="Search by PID or process name or command"
+                       aria-label="Search"
+                       aria-describedby="search-addon"/>
+                <button type="button" class="btn btn-outline-primary">Search</button>
+            </div>
             <table class="process-list table w-auto small">
                 <thead>
                 <tr>
@@ -214,7 +222,10 @@
                     </td>
                     <td>{{ process.running_since }}</td>
                     <td>{{ process.parent }}</td>
-                    <td class="contained">{{ process.cmdline }}</td>
+                    <td class="contained expandable-cell" style="font-family: monospace" data-bs-toggle="tooltip"
+                        data-bs-placement="top" data-bs-original-title="{{ process.cmdline }}">
+                        {{ process.cmdline }}
+                    </td>
                     <td style="font-family: monospace">{{ process.memory_usage }} MB</td>
                     <td style="font-family: monospace">{{ process.cpu_usage }}%</td>
                     <td>
