@@ -38,7 +38,7 @@ setup(
     install_requires=get_requirements_to_install(),
     author='Amith Koujalgi',
     author_email='',
-    packages=find_packages(include=['sys_stats', 'sys_stats.routes']),
+    packages=find_packages(include=['sys_stats', 'sys_stats.api']),
     package_data={
         'sys_stats': ['templates/*'],
     },

@@ -12,7 +12,7 @@ from starlette.staticfiles import StaticFiles
 from starlette.templating import Jinja2Templates
 
 import sys_stats
-from sys_stats.routes import stats
+from sys_stats.api import stats
 
 app_title = "Sys Stats API"
 app_version = "0.0.1"
