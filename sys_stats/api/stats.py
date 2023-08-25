@@ -11,25 +11,31 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 
-def processes():
+def processes(search_keyword: str):
     processlist = []
     for process in psutil.process_iter():
         process: psutil.Process
         try:
-            processlist.append(
-                dict(
-                    name=process.name(),
-                    pid=process.pid,
-                    status=process.status(),
-                    create_time=process.create_time(),
-                    running_since=format_timespan(time.time() - process.create_time()),
-                    parent=process.parent().name(),
-                    cmdline=' '.join(process.cmdline()),
-                    username=process.username(),
-                    memory_usage=round(process.memory_info().rss / (1024 * 1024), 2),
-                    cpu_usage=round(process.cpu_percent(), 2)
-                )
+            cmdline = ' '.join(process.cmdline())
+            process_dict = dict(
+                name=process.name(),
+                pid=process.pid,
+                status=process.status(),
+                create_time=process.create_time(),
+                running_since=format_timespan(time.time() - process.create_time()),
+                parent=process.parent().name(),
+                cmdline=cmdline,
+                username=process.username(),
+                memory_usage=round(process.memory_info().rss / (1024 * 1024), 2),
+                cpu_usage=round(process.cpu_percent(), 2)
             )
+            if search_keyword is None or search_keyword.strip() == '':
+                processlist.append(process_dict)
+            else:
+                search_keyword = search_keyword.lower()
+                if search_keyword in process.name().lower() or search_keyword in str(
+                        process.pid).lower() or search_keyword in cmdline.lower():
+                    processlist.append(process_dict)
         except Exception as e:
             logger.error(f'Could not add process - {process.name()}. Error: {e}')
     processlist = sorted(processlist, key=lambda x: x['cpu_usage'], reverse=True)

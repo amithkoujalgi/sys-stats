@@ -106,13 +106,13 @@ sysstats start --port 8055
 ### Screenshots
 
 Listing processes
-![](images/processes.png)
-
-Resource utilisation
-![](images/resources.png)
+![](https://i.imgur.com/pdHLGi6.png)
 
 List of processes listening on inet ports
-![](images/ports.png)
+![](https://i.imgur.com/8424Kt4.png)
+
+Resource utilisation
+![](https://i.imgur.com/VabIFk9.png)
 
 ### Development
 

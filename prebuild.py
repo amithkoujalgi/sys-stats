@@ -5,8 +5,6 @@ from pathlib import Path
 import pypandoc
 from pypandoc.pandoc_download import download_pandoc
 
-download_pandoc(delete_installer=True)
-
 args = sys.argv
 
 
@@ -74,6 +72,7 @@ def generate_readme_rst_from_md():
         f.write(output)
 
 
+download_pandoc(delete_installer=True)
 update_version_file(bump_arg=bump_type)
 update_readme()
 generate_readme_rst_from_md()

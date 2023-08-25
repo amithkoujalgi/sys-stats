@@ -2,7 +2,19 @@
 
 $(function () {
     $('[data-bs-toggle="tooltip"]').tooltip();
-})
+});
+
+$(document).ready(function () {
+    let url = window.location.href;
+    let searchKeyIndex = url.indexOf('search=')
+    if (searchKeyIndex > 0) {
+        let searchKeyword = url.substring(searchKeyIndex + 7, url.length);
+        $("#proc-search").val(searchKeyword);
+    } else {
+        $("#proc-search").val('');
+    }
+});
+
 $(document).ready(function () {
     $('.expandable-cell').click(function () {
         let $cell = $(this);
@@ -33,4 +45,25 @@ $(document).on('click', '.kill-process', function () {
             }
         });
     }
+});
+
+$(document).ready(function () {
+    const $searchInput = $("#proc-search");
+    const $searchButton = $("#proc-search-btn");
+
+    function performSearch() {
+        const searchText = $searchInput.val();
+        let apiUrl = $(location).attr('protocol') + '//' + $(location).attr('host') + `/?search=${encodeURIComponent(searchText)}`;
+        window.location = apiUrl;
+    }
+
+    $searchInput.keyup(function (event) {
+        if (event.key === "Enter") {
+            performSearch();
+        }
+    });
+
+    $searchButton.click(function () {
+        performSearch();
+    });
 });

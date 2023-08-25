@@ -49,6 +49,10 @@
     width: 100% !important;
 }
 
+.process-list td {
+    vertical-align: middle;
+}
+
 .port-list {
     width: 100% !important;
 }

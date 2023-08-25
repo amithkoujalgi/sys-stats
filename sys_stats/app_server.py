@@ -50,13 +50,14 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+
 @app.get("/", response_class=HTMLResponse)
-async def read_root(request: Request):
+async def read_root(request: Request, search: str = ''):
     context = {
         "request": request,
         "title": "Sys Stats",
         "message": "Sys Stats",
-        "processes": stats.processes()
+        "processes": stats.processes(search_keyword=search)
     }
     return templates.TemplateResponse("index.html", context)
 

@@ -115,7 +115,7 @@
                     <thead>
                     <tr>
                         <th scope="col">Combined (%)</th>
-                        <th scope="col">Per Core (%)</th>
+                        <th scope="col">Per Core</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -126,14 +126,14 @@
                                 <thead>
                                 <tr>
                                     <th scope="col">Core</th>
-                                    <th scope="col">Usage</th>
+                                    <th scope="col">Usage (%)</th>
                                 </tr>
                                 </thead>
                                 <tbody>
                                 {% for cpu in stats.cpu_usage.per_cpu %}
                                 <tr>
                                     <td style="font-family: monospace">{{ loop.index }}</td>
-                                    <td style="font-family: monospace">{{ cpu }}</td>
+                                    <td style="font-family: monospace">{{ cpu }} %</td>
                                 </tr>
                                 {% endfor %}
                                 </tbody>
@@ -149,8 +149,8 @@
             <div class="input-group search-bar">
                 <input type="search" class="form-control rounded" placeholder="Search by PID or process name or command"
                        aria-label="Search"
-                       aria-describedby="search-addon"/>
-                <button type="button" class="btn btn-outline-primary">Search</button>
+                       aria-describedby="search-addon" id="proc-search"/>
+                <button type="button" class="btn btn-outline-primary" id="proc-search-btn">Search</button>
             </div>
             <table class="process-list table w-auto small">
                 <thead>
@@ -164,6 +164,7 @@
                     <th scope="col">Command</th>
                     <th scope="col">Memory usage</th>
                     <th scope="col">CPU usage</th>
+                    <th scope="col"></th>
                 </tr>
                 </thead>
                 <tbody>
@@ -262,7 +263,7 @@
                     <td>{{ port.laddr.ip }}</td>
                     <td>{{ port.process_owner }}</td>
                     <td>{{ port.process_name }}</td>
-                    <td>{{ port.process_cmd }}</td>
+                    <td style="font-family: monospace;">{{ port.process_cmd }}</td>
                 </tr>
                 {% endfor %}
                 </tbody>
