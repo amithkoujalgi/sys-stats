@@ -2,9 +2,9 @@
 
 An open-source Python tool to provide system stats over a web interface.
 
-![Python](https://img.shields.io/badge/Python-3.8%2B-blue.svg)
+![](https://img.shields.io/badge/Python-3.8%2B-blue.svg)
 
-![sys-stats](https://img.shields.io/badge/sys--stats:_latest_version-0.0.7-green.svg)
+![](https://img.shields.io/badge/sys--stats:_latest_version-0.0.8-green.svg)
 
 Project Website: https://amithkoujalgi.github.io/sys-stats/
 

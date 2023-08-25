@@ -3,16 +3,9 @@ sys-stats
 
 An open-source Python tool to provide system stats over a web interface.
 
-.. figure:: https://img.shields.io/badge/Python-3.8%2B-blue.svg
-   :alt: Python
+|image1|
 
-   Python
-
-.. figure::
-   https://img.shields.io/badge/sys--stats:_latest_version-0.0.7-green.svg
-   :alt: sys-stats
-
-   sys-stats
+|image2|
 
 Project Website: https://amithkoujalgi.github.io/sys-stats/
 
@@ -121,11 +114,11 @@ To specify a different port, run:
 Screenshots
 ~~~~~~~~~~~
 
-Listing processes |image1|
+Listing processes |image3|
 
-Resource utilisation |image2|
+Resource utilisation |image4|
 
-List of processes listening on inet ports |image3|
+List of processes listening on inet ports |image5|
 
 Development
 ~~~~~~~~~~~
@@ -176,6 +169,8 @@ License
 The project is released under the MIT License. For more details, consult
 the `License <./LICENSE>`__ file.
 
-.. |image1| image:: images/processes.png
-.. |image2| image:: images/resources.png
-.. |image3| image:: images/ports.png
+.. |image1| image:: https://img.shields.io/badge/Python-3.8%2B-blue.svg
+.. |image2| image:: https://img.shields.io/badge/sys--stats:_latest_version-0.0.8-green.svg
+.. |image3| image:: images/processes.png
+.. |image4| image:: images/resources.png
+.. |image5| image:: images/ports.png
