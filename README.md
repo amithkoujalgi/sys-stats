@@ -73,7 +73,7 @@ sys-stats start
 
 The process starts up with the following logs:
 
-```commandline
+```text
 INFO:root:Starting web server on 0.0.0.0:8070
 INFO:root:Web UI at: http://0.0.0.0:8070
 INFO:     Started server process [21730]
