@@ -4,13 +4,10 @@ import traceback
 from sys import platform
 
 import psutil
-from fastapi import APIRouter
 from humanfriendly import format_timespan
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
-router = APIRouter()
-
 
 def processes():
     processlist = []

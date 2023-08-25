@@ -50,13 +50,6 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-app.include_router(
-    stats.router,
-    prefix="/api/stats",
-    tags=["stats"],
-)
-
-
 @app.get("/", response_class=HTMLResponse)
 async def read_root(request: Request):
     context = {
