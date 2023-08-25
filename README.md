@@ -128,7 +128,7 @@ This creates a wheel distribution under `dist` directory.
 - UI improvements - look and feel and slickness
 - Ability to start the server in background (-d mode)
 - Ability to pass an external JSON/YAML configuration file to configure bind address, logging path, etc.
-
+- Support for cluster setup (may be?) 
 
 #### Get Involved
 
