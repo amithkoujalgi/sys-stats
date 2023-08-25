@@ -42,8 +42,8 @@ def resource_usage():
             used=round(psutil.virtual_memory().used / (1024 * 1024), 2),
             available=round(psutil.virtual_memory().available / (1024 * 1024), 2),
             free=round(psutil.virtual_memory().free / (1024 * 1024), 2),
-            active=round(psutil.virtual_memory().active / (1024 * 1024), 2),
-            inactive=round(psutil.virtual_memory().inactive / (1024 * 1024), 2),
+            # active=round(psutil.virtual_memory().active / (1024 * 1024), 2),
+            # inactive=round(psutil.virtual_memory().inactive / (1024 * 1024), 2),
             # wired=round(psutil.virtual_memory().wired / (1024 * 1024), 2),
         ),
         cpu_usage=dict(
