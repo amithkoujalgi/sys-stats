@@ -16,7 +16,7 @@ $(document).ready(function () {
 });
 
 $(document).on('click', '.kill-process', function () {
-    if (confirm('Are you sure you want to kill this process?')) {
+    if (confirm('Are you sure you want to terminate this process?')) {
         let pid = this.id.replace('pid-', '');
         let url = $(location).attr('protocol') + '//' + $(location).attr('host') + `/kill/${pid}`;
         $.ajax({

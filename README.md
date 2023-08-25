@@ -1,6 +1,6 @@
 # sys-stats
 
-An open-source Python library to provide system stats over a web interface.
+An open-source Python tool to provide system stats over a web interface.
 
 ![Python](https://img.shields.io/badge/Python-3.8%2B-blue.svg)
 

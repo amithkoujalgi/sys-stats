@@ -36,6 +36,15 @@
     float: right;
 }
 
+.kill-process,
+.kill-process:hover,
+.kill-process:visited {
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+    color: red;
+}
+
+
 .process-list {
     width: 100% !important;
 }
