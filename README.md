@@ -6,7 +6,7 @@ An open-source Python tool to provide system stats over a web interface.
 
 ![sys-stats](https://img.shields.io/badge/sys--stats:_latest_version-0.0.4-green.svg)
 
-Project Site: https://amithkoujalgi.github.io/sys-stats/
+Project Website: https://amithkoujalgi.github.io/sys-stats/
 
 ## Table of Contents
 

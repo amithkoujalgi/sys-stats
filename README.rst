@@ -14,7 +14,7 @@ An open-source Python tool to provide system stats over a web interface.
 
    sys-stats
 
-Project Site: https://amithkoujalgi.github.io/sys-stats/
+Project Website: https://amithkoujalgi.github.io/sys-stats/
 
 Table of Contents
 -----------------
