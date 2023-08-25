@@ -116,6 +116,9 @@ Run:
 bash build.sh
 ```
 
+This creates a wheel distribution under `dist` directory.
+
+
 #### Areas of improvement 
 
 - Auto-refreshing UI views
@@ -129,9 +132,9 @@ bash build.sh
 
 #### Get Involved
 
-I welcome contributions!
-Whether it's reporting a bug, proposing an enhancement, or helping with code, please refer to the contribution
-guidelines to get started.
+Contributions are most welcome!
+Whether it's reporting a bug, proposing an enhancement, or helping with code - any sort of contribution is much appreciated.
+Please refer to the contribution guidelines to get started.
 
 ### License
 
