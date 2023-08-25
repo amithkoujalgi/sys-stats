@@ -26,7 +26,7 @@
         <div class="col-sm-auto bg-light sticky-top">
             <div class="d-flex flex-sm-column flex-row flex-nowrap bg-light align-items-center sticky-top">
                 <a href="#" class="d-block p-3 link-dark text-decoration-none" title="" data-bs-toggle="tooltip"
-                   data-bs-placement="right" data-bs-original-title="Sys Stats">
+                   data-bs-placement="right" data-bs-original-title="Sys Stats" style="padding-top: 30px !important;">
                     <i class="bi-clipboard-heart fs-1"></i>
                 </a>
                 <ul class="nav nav-pills nav-flush flex-sm-column flex-row flex-nowrap mb-auto mx-auto text-center justify-content-between w-100 px-3 align-items-center">
@@ -51,12 +51,19 @@
                 </ul>
             </div>
         </div>
-        <div class="col-sm p-3 min-vh-100">
-            <a href="https://github.com/amithkoujalgi/sys-stats" class="nav-link py-3 px-2 gh-link" title="" data-bs-toggle="tooltip"
-               data-bs-placement="right" data-bs-original-title="Project on GitHub" target="_blank">
-                <i class="bi-github fs-1"></i>
-            </a>
-            <h2>Sys Stats</h2>
+        <div class="col-sm  p-3 min-vh-100">
+            <div class="row">
+                <div class="col-md-6 d-flex align-items-center">
+                    <h2>Sys Stats</h2>
+                </div>
+                <div class="col-md-6">
+                    <a href="https://github.com/amithkoujalgi/sys-stats" class="nav-link py-3 px-2 gh-link" title=""
+                       data-bs-toggle="tooltip"
+                       data-bs-placement="right" data-bs-original-title="Project on GitHub" target="_blank">
+                        <i class="bi-github fs-1"></i>
+                    </a>
+                </div>
+            </div>
 
             <hr/>
             {% if stats %}
