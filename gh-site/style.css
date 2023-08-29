@@ -1,0 +1,12 @@
+.proj-hdr p {
+    color: azure;
+}
+
+.carousel-control-next-icon, .carousel-control-prev-icon {
+    z-index: 999;
+    background-color: black;
+}
+
+.carousel-caption h5, p {
+    color: blue;
+}
