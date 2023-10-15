@@ -9,4 +9,8 @@ psutil
 jinja2
 humanfriendly
 
+httpx
+pytest
+pytest-html
+
 pypandoc
