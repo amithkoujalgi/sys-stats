@@ -1,10 +1,9 @@
 import os
-import threading
-import time
 from pathlib import Path
 
 import eventlet
 import socketio
+
 import sys_stats
 from sys_stats.api import stats
 
@@ -20,18 +19,6 @@ app = socketio.WSGIApp(sio, static_files={
 @sio.event
 def connect(sid, environ):
     print('Client connected:', sid)
-
-
-@sio.on('my-action')
-def my_action(sid, data):
-    print('Received message:', data)
-
-
-def watcher(client):
-    while True:
-        print('watching')
-        client.emit("process-list", stats.processes(search_keyword=''))
-        time.sleep(1)
 
 
 @sio.on('list_processes')
