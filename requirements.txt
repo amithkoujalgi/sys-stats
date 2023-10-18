@@ -8,6 +8,8 @@ pydantic
 psutil
 jinja2
 humanfriendly
+python-socketio
+eventlet
 
 httpx
 pytest
