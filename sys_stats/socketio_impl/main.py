@@ -1,4 +1,6 @@
 import os
+import threading
+import time
 from pathlib import Path
 
 import eventlet
@@ -25,11 +27,17 @@ def my_action(sid, data):
     print('Received message:', data)
 
 
+def watcher(client):
+    while True:
+        print('watching')
+        client.emit("process-list", stats.processes(search_keyword=''))
+        time.sleep(1)
+
+
 @sio.on('list_processes')
 def list_processes(sid, data):
-    prc_list = stats.processes(search_keyword='')
+    sio.emit("process-list", stats.processes(search_keyword=''))
     print('Received message:', data)
-    sio.emit("process-list", prc_list)
 
 
 @sio.event

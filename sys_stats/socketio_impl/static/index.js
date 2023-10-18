@@ -13,8 +13,12 @@ $(document).ready(function () {
     console.log('Loaded socketio script');
     socket.on('connect', () => {
         console.log('Connected to server!');
-        socket.emit('list_processes', {data: 'foo!', id: 123});
+        // socket.emit('list_processes', {data: 'foo!', id: 123});
     });
+
+    setInterval(function () {
+        socket.emit('list_processes', {search_keyword: ''});
+    }, 1000);
 
     socket.on("process-list", data => {
         // console.log("prc: " + JSON.stringify(data))
