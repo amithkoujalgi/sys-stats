@@ -4,6 +4,7 @@ from pathlib import Path
 import eventlet
 import socketio
 import sys_stats
+from sys_stats.api import stats
 
 static_path = os.path.join(Path(sys_stats.__file__).parent, 'socketio_impl', 'static')
 
@@ -22,6 +23,13 @@ def connect(sid, environ):
 @sio.on('my-action')
 def my_action(sid, data):
     print('Received message:', data)
+
+
+@sio.on('list_processes')
+def list_processes(sid, data):
+    prc_list = stats.processes(search_keyword='')
+    print('Received message:', data)
+    sio.emit("process-list", prc_list)
 
 
 @sio.event

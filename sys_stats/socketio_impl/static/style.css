@@ -1,54 +1,70 @@
-body {
-    margin: 0;
-    padding-bottom: 3rem;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+.sidebar {
+    background-color: #343a40;
+    color: white;
 }
 
-#form {
-    background: rgba(0, 0, 0, 0.15);
-    padding: 0.25rem;
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    display: flex;
-    height: 3rem;
-    box-sizing: border-box;
-    backdrop-filter: blur(10px);
+.content {
+    background-color: #f8f9fa;
 }
 
-#input {
-    border: none;
-    padding: 0 1rem;
-    flex-grow: 1;
-    border-radius: 2rem;
-    margin: 0.25rem;
+.full-height {
+    min-height: 100vh;
 }
 
-#input:focus {
-    outline: none;
+.fs-1 {
+    font-size: 1.5rem !important;
 }
 
-#form > button {
-    background: #333;
-    border: none;
-    padding: 0 1rem;
-    margin: 0.25rem;
-    border-radius: 3px;
-    outline: none;
-    color: #fff;
+.expandable-cell {
+    max-width: 150px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    cursor: pointer;
 }
 
-#messages {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
+.expanded {
+    white-space: normal;
 }
 
-#messages > li {
-    padding: 0.5rem 1rem;
+.search-bar {
+    padding-top: 10px;
+    padding-bottom: 20px;
 }
 
-#messages > li:nth-child(odd) {
-    background: #efefef;
+.gh-link {
+    float: right;
+}
+
+.kill-process,
+.kill-process:hover,
+.kill-process:visited {
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+    color: red;
+}
+
+
+.process-list {
+    width: 100% !important;
+}
+
+.process-list td {
+    vertical-align: middle;
+}
+
+.port-list {
+    width: 100% !important;
+}
+
+.process-status-container {
+    text-align: center;
+}
+
+.process-status-lbl {
+    font-size: 10px;
+}
+
+.contained {
+    word-break: break-word;
 }
