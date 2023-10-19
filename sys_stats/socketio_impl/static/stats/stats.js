@@ -25,7 +25,6 @@ function plotMemoryChart(percentage, total, used) {
                 bgcolor: "#bfd4f4",
                 borderwidth: 2,
                 bordercolor: "white",
-
             }
         }
     ];
@@ -37,6 +36,7 @@ function plotMemoryChart(percentage, total, used) {
     };
     Plotly.newPlot('memory-usage-chart', data, layout, config);
 }
+
 function plotCPUChart(percentage) {
     let data = [
         {
@@ -59,7 +59,6 @@ function plotCPUChart(percentage) {
                 bgcolor: "#bfd4f4",
                 borderwidth: 2,
                 bordercolor: "white",
-
             }
         }
     ];
@@ -71,6 +70,33 @@ function plotCPUChart(percentage) {
     };
     Plotly.newPlot('memory-usage-chart1', data, layout, config);
 }
+
+function plotCPUCoresChart(percentageArray) {
+    let xLabels = Object.keys(percentageArray).map(label => (parseInt(label) + 1).toString());
+    let yValues = Object.values(percentageArray);
+
+    var data = [
+        {
+            x: xLabels,
+            y: yValues,
+            type: 'bar'
+        }
+    ];
+
+    var layout = {
+        yaxis: {
+            range: [0, 100]
+        },
+        xaxis: {
+            categoryorder: 'category ascending',
+            tickmode: 'linear'
+        }
+    };
+    let config = {displayModeBar: false};
+
+    Plotly.newPlot('cpu-cores-chart', data, layout, config);
+}
+
 
 $(document).ready(function () {
     let url = window.location.href;
@@ -93,35 +119,10 @@ $(document).ready(function () {
         // console.log("prc: " + JSON.stringify(data))
         let memory = data.memory;
         let cpu = data.cpu_usage;
-        let cpuBody = $('.cpu-list');
-        let cpuRows = ""
-        let count = 1;
-        for (let cpuItem of cpu.per_cpu) {
-            let row = `
-                <tr>
-                    <td style="font-family: monospace">${count}</td>
-                    <td style="font-family: monospace">${cpuItem} %</td>
-                </tr>
-            `;
-            cpuRows = cpuRows + row;
-            count = count + 1;
-        }
-
-        let cpuTbl = `
-            <thead>
-            <tr>
-                <th scope="col">Core</th>
-                <th scope="col">Usage (%)</th>
-            </tr>
-            </thead>
-            <tbody>
-            ${cpuRows}
-            </tbody>
-        `;
-        cpuBody.html(cpuTbl);
 
         plotMemoryChart(memory.percent, memory.total, memory.used);
         plotCPUChart(cpu.combined);
+        plotCPUCoresChart(cpu.per_cpu)
     });
 });
 
