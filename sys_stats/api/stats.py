@@ -84,12 +84,12 @@ def __list_open_ports_with_lsof():
     open_ports = []
     try:
         cmd = ['lsof', '-i', '-n', '-P']
-        print(f'running: {" ".join(cmd)}')
+        # print(f'running: {" ".join(cmd)}')
         output = subprocess.check_output(cmd, universal_newlines=True)
         lines = output.split('\n')
         for line in lines[1:]:
             parts = line.split()
-            if '(LISTEN)' in parts and 'IPv4' in parts:
+            if '(LISTEN)' in parts and ('IPv4' in parts or 'IPv6' in parts):
                 pid = int(parts[1])
                 process_name = ''
                 process_owner = ''
@@ -103,7 +103,7 @@ def __list_open_ports_with_lsof():
                     fd='NA',
                     family='NA',
                     type='NA',
-                    laddr=dict(ip=parts[8].split(':')[0], port=parts[8].split(':')[1]),
+                    laddr = dict(ip=parts[8].rsplit(':', 1)[0], port=parts[8].rsplit(':', 1)[1]),
                     raddr='NA',
                     status='LISTEN',
                     pid=pid,

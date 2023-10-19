@@ -16,11 +16,11 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.7.2/socket.io.js"
         integrity="sha512-zoJXRvW2gC8Z0Xo3lBbao5+AS3g6YWr5ztKqaicua11xHo+AvE1b0lT9ODgrHTmNUxeCw0Ry4BGRYZfXu70weg=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script src="/index.js"></script>
+<script src="/ports/ports.js"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 <link href="/style.css" rel="stylesheet">
 <head>
-    <title>Sys Stats</title>
+    <title>Sys Stats: Ports</title>
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
 </head>
 
@@ -42,7 +42,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="/ports/" class="nav-link py-3 px-2" title="" data-bs-toggle="tooltip"
+                        <a href="#" class="nav-link py-3 px-2" title="" data-bs-toggle="tooltip"
                            data-bs-placement="right" data-bs-original-title="Ports">
                             <i class="bi-wifi fs-1"></i>
                         </a>
@@ -88,14 +88,15 @@
                     </a>
                 </div>
             </div>
-            <h5>Processes</h5>
+            <h5>Ports</h5>
             <div class="input-group search-bar">
-                <input type="search" class="form-control rounded" placeholder="Search by PID or process name or command"
+                <input type="search" class="form-control rounded"
+                       placeholder="Search by PID or bind port or process name or command"
                        aria-label="Search"
                        aria-describedby="search-addon" id="proc-search"/>
                 <button type="button" class="btn btn-outline-primary" id="proc-search-btn">Search</button>
             </div>
-            <table class="process-list table w-auto small"></table>
+            <table class="port-list table w-auto small"></table>
         </div>
     </div>
 </div>
