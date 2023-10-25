@@ -37,7 +37,8 @@ def processes(search_keyword: str):
                         process.pid).lower() or search_keyword in cmdline.lower():
                     processlist.append(process_dict)
         except Exception as e:
-            logger.error(f'Could not add process - {process.name()}. Error: {e}')
+            pass
+            # logger.error(f'Could not add process - {process.name()}. Error: {e}')
     processlist = sorted(processlist, key=lambda x: x['cpu_usage'], reverse=True)
     return processlist
 
@@ -84,7 +85,6 @@ def __list_open_ports_with_lsof():
     open_ports = []
     try:
         cmd = ['lsof', '-i', '-n', '-P']
-        # print(f'running: {" ".join(cmd)}')
         output = subprocess.check_output(cmd, universal_newlines=True)
         lines = output.split('\n')
         for line in lines[1:]:
@@ -190,6 +190,7 @@ def __list_open_ports_standard():
     return port_mappings
 
 
+# noinspection PyTypeChecker
 def net_connections(search_keyword: str = ''):
     """
     Lists TCP ports open for listening
@@ -207,13 +208,17 @@ def net_connections(search_keyword: str = ''):
     else:
         logger.error(f'Unknown platform - {platform}')
 
-    if search_keyword == None or search_keyword == '':
+    if search_keyword is None or search_keyword == '':
         return _port_list
 
     _port_list_filtered = []
     for p in _port_list:
-        if search_keyword in str(p['pid']) or search_keyword in p['laddr']['port'] or search_keyword.lower() in p[
-            'process_name'].lower() or search_keyword.lower() in p['process_cmd'].lower():
+        if (
+                search_keyword in str(p['pid'])
+                or search_keyword in p['laddr']['port']
+                or search_keyword.lower() in p['process_name'].lower()
+                or search_keyword.lower() in p['process_cmd'].lower()
+        ):
             _port_list_filtered.append(p)
 
     return _port_list_filtered

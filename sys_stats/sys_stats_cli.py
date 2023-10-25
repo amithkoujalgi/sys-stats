@@ -4,6 +4,7 @@ import asyncio
 import logging
 import os
 
+import eventlet
 import uvicorn
 
 from sys_stats.app_server import app
@@ -29,19 +30,9 @@ def main():
 
 def _start(port: int = 8070):
     host: str = "0.0.0.0"
-    HTTP_GATEWAY_TIMEOUT_SECONDS = int(os.getenv("HTTP_GATEWAY_TIMEOUT_SECONDS", 180))
     logging.info(f"Starting web server on {host}:{port}")
-    config = uvicorn.Config(
-        app,
-        host=host,
-        port=port,
-        timeout_keep_alive=HTTP_GATEWAY_TIMEOUT_SECONDS,
-        server_header=False,
-    )
-    server_app = uvicorn.Server(config=config)
-    app.debug = True
     logging.info(f"Web UI at: http://{host}:{port}")
-    asyncio.run(server_app.serve())
+    eventlet.wsgi.server(eventlet.listen((host, port)), app)
 
 
 if __name__ == "__main__":

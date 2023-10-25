@@ -23,28 +23,23 @@ def connect(sid, environ):
 @sio.on('list_processes')
 def list_processes(sid, data):
     search_keyword = data['search_keyword']
-    # print(search_keyword)
     sio.emit("process-list", stats.processes(search_keyword=search_keyword))
-    # print('Received message:', data)
 
 
 @sio.on('list_ports')
 def list_ports(sid, data):
     search_keyword = data['search_keyword']
     sio.emit("port-list", stats.net_connections(search_keyword))
-    # print('Received message:', data)
 
 
 @sio.on('resource_usage')
 def resource_usage(sid, data):
     sio.emit("resource-usage", stats.resource_usage())
-    # print('Received message:', data)
 
 
 @sio.on('kill_process')
 def kill_process(sid, data):
     _pid_to_kill = int(data['process_id'])
-    # print('Received message:', data)
     sio.emit("process-kill-status", {
         "status": stats.kill_process_by_pid(_pid_to_kill),
         "pid": _pid_to_kill
