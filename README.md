@@ -46,7 +46,7 @@ The development of that thought, resulted in a tool that is:
 
 While this tool could be used by anybody who is interested in simple system monitoring, it is best
 suited for developers or system admins or someone who wants to monitor a headless (remote server/non-windowed mode
-server) computer over a web interface/browser.
+server) computer over a web interface/web browser.
 
 ### Where can I run this?
 
