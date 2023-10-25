@@ -183,7 +183,7 @@ The project is released under the MIT License. For more details, consult
 the `License <./LICENSE>`__ file.
 
 .. |image1| image:: https://img.shields.io/badge/Python-3.8%2B-blue.svg
-.. |image2| image:: https://img.shields.io/badge/sys--stats:_latest_version-0.0.12-green.svg
+.. |image2| image:: https://img.shields.io/badge/sys--stats:_latest_version-0.0.13-green.svg
 .. |image3| image:: https://i.imgur.com/pdHLGi6.png
 .. |image4| image:: https://i.imgur.com/8424Kt4.png
 .. |image5| image:: https://i.imgur.com/VabIFk9.png
