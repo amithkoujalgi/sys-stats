@@ -157,9 +157,10 @@ Areas of improvement
    time period (for 30 mins, or more) - useful for plotting resource
    utilisation graphs.
 -  Security measures/user authentication
--  Searching for processes by PID, process name or command
 -  UI improvements - look and feel and slickness
--  Ability to start the server in background (-d mode)
+-  Sorting table data by fields
+-  Settings view
+-  Ability to start the server in background (-d/–daemon mode)
 -  Ability to pass an external JSON/YAML configuration file to configure
    bind address, logging path, etc.
 -  Support for cluster setup (may be?)
@@ -178,7 +179,7 @@ The project is released under the MIT License. For more details, consult
 the `License <./LICENSE>`__ file.
 
 .. |image1| image:: https://img.shields.io/badge/Python-3.8%2B-blue.svg
-.. |image2| image:: https://img.shields.io/badge/sys--stats:_latest_version-0.0.9-green.svg
+.. |image2| image:: https://img.shields.io/badge/sys--stats:_latest_version-0.0.10-green.svg
 .. |image3| image:: https://i.imgur.com/pdHLGi6.png
 .. |image4| image:: https://i.imgur.com/8424Kt4.png
 .. |image5| image:: https://i.imgur.com/VabIFk9.png
