@@ -64,9 +64,9 @@ The possibilities are endless and the tool will evolve over time to get better.
 
 ### Features
 
-- List running processes
-- List processes listening on inet ports
-- Show hardware metrics - CPU/Memory usage, etc
+- List and kill running processes.
+- List processes listening on inet ports.
+- Show hardware metrics - CPU/Memory usage, etc.
 
 ### Installation
 
