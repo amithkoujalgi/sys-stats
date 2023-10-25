@@ -89,10 +89,7 @@ The process starts up with the following logs:
 ```text
 INFO:root:Starting web server on 0.0.0.0:8070
 INFO:root:Web UI at: http://0.0.0.0:8070
-INFO:     Started server process [21730]
-INFO:     Waiting for application startup.
-INFO:     Application startup complete.
-INFO:     Uvicorn running on http://0.0.0.0:8070 (Press CTRL+C to quit)
+(8606) wsgi starting up on http://0.0.0.0:8070
 ```
 
 Now, access the web interface at http://localhost:8070
