@@ -1,9 +1,8 @@
 // noinspection JSUnresolvedReference
+
 let socket = io(`ws://${window.location.host}`);
 
 $(document).ready(function () {
-    let url = window.location.href;
-
     $(function () {
         $('[data-bs-toggle="tooltip"]').tooltip();
     });
@@ -50,10 +49,6 @@ $(document).ready(function () {
         `;
         tableBody.html(head + "<tbody>" + rows + "</tbody>");
     });
-});
-
-$(document).on('click', '#send', function () {
-    console.log('clicked...')
 });
 
 $(document).on('click', '.expandable-cell', function () {

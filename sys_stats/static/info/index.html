@@ -16,11 +16,11 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.7.2/socket.io.js"
         integrity="sha512-zoJXRvW2gC8Z0Xo3lBbao5+AS3g6YWr5ztKqaicua11xHo+AvE1b0lT9ODgrHTmNUxeCw0Ry4BGRYZfXu70weg=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script src="/ports/ports.js"></script>
+<script src="/info/info.js"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 <link href="/style.css" rel="stylesheet">
 <head>
-    <title>Sys Stats: Ports</title>
+    <title>Sys Stats: Info</title>
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
 </head>
 
@@ -60,7 +60,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="/info/" class="nav-link py-3 px-2" title="" data-bs-toggle="tooltip"
+                        <a href="#" class="nav-link py-3 px-2" title="" data-bs-toggle="tooltip"
                            data-bs-placement="right" data-bs-original-title="Info">
                             <i class="bi-info-lg fs-1"></i>
                         </a>
@@ -88,14 +88,9 @@
                     </a>
                 </div>
             </div>
-            <h5>Ports</h5>
-            <div class="input-group search-bar">
-                <input type="search" class="form-control rounded"
-                       placeholder="Search by PID or bind port or process name or command"
-                       aria-label="Search"
-                       aria-describedby="search-addon" id="port-search"/>
-            </div>
+            <h5>Info</h5>
             <table class="port-list table w-auto small"></table>
+            <img src="https://resources.jetbrains.com/storage/products/company/brand/logos/jb_beam.svg" alt="JetBrains Logo (Main) logo.">
         </div>
     </div>
 </div>

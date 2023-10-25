@@ -1,4 +1,5 @@
 // noinspection JSUnresolvedReference
+
 let socket = io(`ws://${window.location.host}`);
 
 function plotMemoryChart(percentage, total, used) {
@@ -100,8 +101,6 @@ function plotCPUCoresChart(percentageArray) {
 
 
 $(document).ready(function () {
-    let url = window.location.href;
-
     $(function () {
         $('[data-bs-toggle="tooltip"]').tooltip();
     });
@@ -125,10 +124,6 @@ $(document).ready(function () {
         plotCPUChart(cpu.combined);
         plotCPUCoresChart(cpu.per_cpu)
     });
-});
-
-$(document).on('click', '#send', function () {
-    console.log('clicked...')
 });
 
 $(document).on('click', '.expandable-cell', function () {

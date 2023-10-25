@@ -1,9 +1,8 @@
 // noinspection JSUnresolvedReference
+
 let socket = io(`ws://${window.location.host}`);
 
 $(document).ready(function () {
-    let url = window.location.href;
-
     $(function () {
         $('[data-bs-toggle="tooltip"]').tooltip();
     });
@@ -11,10 +10,9 @@ $(document).ready(function () {
     console.log('Loaded socketio script');
     socket.on('connect', () => {
         console.log('Connected to server!');
-        // socket.emit('list_processes', {data: 'foo!', id: 123});
+        socket.emit('list_processes', {search_keyword: ''});
     });
 
-    socket.emit('list_processes', {search_keyword: ''});
     setInterval(function () {
         socket.emit('list_processes', {search_keyword: $('#proc-search').val()});
     }, 1000);
@@ -25,7 +23,6 @@ $(document).ready(function () {
     });
 
     socket.on("process-list", data => {
-        // console.log("prc: " + JSON.stringify(data))
         let processList = data;
         let tableBody = $('.process-list');
 
