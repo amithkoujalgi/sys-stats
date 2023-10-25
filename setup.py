@@ -49,7 +49,7 @@ setup(
     author_email='koujalgi.amith@gmail.com',
     packages=find_packages(include=['sys_stats', 'sys_stats.api']),
     package_data={
-        'sys_stats': ['static/*'],
+        'sys_stats': ['static/**/*'],
     },
     entry_points={
         'console_scripts': [
