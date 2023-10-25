@@ -76,6 +76,10 @@ To install the package, use the following pip command:
 pip install sys-stats
 ```
 
+Note: 
+
+> On MacOS, it might fail to install if you do not have `xcode` set up. Please set up xcode and continue with the installation. Meanwhile, I shall find a way to by-pass this step.
+
 PyPI project: https://pypi.org/project/sys-stats/
 
 Then run,
