@@ -1,5 +1,5 @@
 // noinspection JSUnresolvedReference
-let socket = io("ws://0.0.0.0:8070");
+let socket = io(`ws://${window.location.host}`);
 
 function plotMemoryChart(percentage, total, used) {
     let data = [
