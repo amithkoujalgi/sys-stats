@@ -78,7 +78,7 @@ pip install sys-stats
 
 Note: 
 
-> On MacOS, it might fail to install if you do not have `xcode` set up. Please set up xcode and continue with the installation. Meanwhile, I shall find a way to by-pass this step.
+> On MacOS, it might fail to install if you do not have `xcode` set up. Please set up xcode using the command `xcode-select --install` and continue with the installation. Meanwhile, I shall find a way to by-pass this step.
 
 PyPI project: https://pypi.org/project/sys-stats/
 
