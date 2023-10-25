@@ -136,9 +136,9 @@ This creates a wheel distribution under `dist` directory.
 - Cache the data in memory to record resource utilisation for a given time period (for 30 mins, or more) - useful for
   plotting resource utilisation graphs.
 - Security measures/user authentication
-- Searching for processes by PID, process name or command
 - UI improvements - look and feel and slickness
-- Ability to start the server in background (-d mode)
+- Settings view
+- Ability to start the server in background (-d/--daemon mode)
 - Ability to pass an external JSON/YAML configuration file to configure bind address, logging path, etc.
 - Support for cluster setup (may be?)
 
