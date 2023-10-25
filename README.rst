@@ -153,8 +153,6 @@ This creates a wheel distribution under ``dist`` directory.
 Areas of improvement
 ^^^^^^^^^^^^^^^^^^^^
 
--  Auto-refreshing UI views
--  Web-socket enabled comms
 -  Cache the data in memory to record resource utilisation for a given
    time period (for 30 mins, or more) - useful for plotting resource
    utilisation graphs.
