@@ -104,6 +104,11 @@ To specify a different port, run:
 sysstats start --port 8055
 ```
 
+Check the installed version of sys-stats:
+```bash
+sys-stats version
+```
+
 ### Screenshots
 
 Listing processes
