@@ -16,9 +16,15 @@ $(document).ready(function () {
         // socket.emit('list_processes', {data: 'foo!', id: 123});
     });
 
+    socket.emit('list_processes', {search_keyword: ''});
     setInterval(function () {
-        socket.emit('list_processes', {search_keyword: ''});
+        socket.emit('list_processes', {search_keyword: $('#proc-search').val()});
     }, 1000);
+
+    socket.on("process-kill-status", data => {
+        $('.toast-body').html(`Process ${data.pid} killed.`);
+        $('#toast').toast('show');
+    });
 
     socket.on("process-list", data => {
         // console.log("prc: " + JSON.stringify(data))
@@ -39,7 +45,7 @@ $(document).ready(function () {
                         style="font-family: monospace" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-original-title=${process.cmdline}>${process.cmdline}</td>
                     <td style="font-family: monospace">${process.memory_usage}</td>
                     <td style="font-family: monospace">${process.cpu_usage}</td>
-                    <td style="font-family: monospace">Kill</td>
+                    <td style="font-family: monospace" class="kill-prc prc-${process.pid}">Kill</td>
                 </tr>
             `;
             rows = rows + row;
@@ -64,8 +70,12 @@ $(document).ready(function () {
     });
 });
 
-$(document).on('click', '#send', function () {
-    console.log('clicked...')
+$(document).on('click', '.kill-prc', function () {
+    let pid = $(this).attr('class').replace('kill-prc', '').replace('prc-', '').trim();
+    const result = window.confirm(`Are you sure you want to kill this process (PID: ${pid})?`);
+    if (result) {
+        socket.emit('kill_process', {process_id: pid});
+    }
 });
 
 $(document).on('click', '.expandable-cell', function () {

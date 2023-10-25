@@ -1,6 +1,4 @@
 // noinspection JSUnresolvedReference
-
-
 let socket = io("ws://0.0.0.0:8070");
 
 function plotMemoryChart(percentage, total, used) {
@@ -30,8 +28,8 @@ function plotMemoryChart(percentage, total, used) {
     ];
     let config = {displayModeBar: false};
     let layout = {
-        width: 600,
-        height: 500,
+        width: 500,
+        height: 400,
         margin: {t: 0, b: 0}
     };
     Plotly.newPlot('memory-usage-chart', data, layout, config);
@@ -64,8 +62,8 @@ function plotCPUChart(percentage) {
     ];
     let config = {displayModeBar: false};
     let layout = {
-        width: 600,
-        height: 500,
+        width: 500,
+        height: 400,
         margin: {t: 0, b: 0}
     };
     Plotly.newPlot('memory-usage-chart1', data, layout, config);
@@ -85,12 +83,15 @@ function plotCPUCoresChart(percentageArray) {
 
     var layout = {
         yaxis: {
-            range: [0, 100]
+            range: [0, 100],
+            title: 'CPU Cores Usage (%)'
         },
         xaxis: {
             categoryorder: 'category ascending',
-            tickmode: 'linear'
-        }
+            tickmode: 'linear',
+            title: 'CPU Cores' // Set x-axis label
+        },
+        height: 350
     };
     let config = {displayModeBar: false};
 

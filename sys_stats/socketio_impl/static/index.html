@@ -93,9 +93,21 @@
                 <input type="search" class="form-control rounded" placeholder="Search by PID or process name or command"
                        aria-label="Search"
                        aria-describedby="search-addon" id="proc-search"/>
-                <button type="button" class="btn btn-outline-primary" id="proc-search-btn">Search</button>
+<!--                <button type="button" class="btn btn-outline-primary" id="proc-search-btn">Search</button>-->
             </div>
             <table class="process-list table w-auto small"></table>
+        </div>
+
+        <div class="position-fixed bottom-0 end-0 p-3">
+            <div id="toast" class="toast" style="float:right;" role="alert" aria-live="assertive" aria-atomic="true"
+                 data-delay="3000">
+                <div class="toast-header">
+                    <strong class="me-auto">Alert</strong>
+                    <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                </div>
+                <div class="toast-body">
+                </div>
+            </div>
         </div>
     </div>
 </div>
