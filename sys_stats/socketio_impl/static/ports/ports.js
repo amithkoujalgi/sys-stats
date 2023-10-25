@@ -16,7 +16,7 @@ $(document).ready(function () {
     });
 
     setInterval(function () {
-        socket.emit('list_ports', {search_keyword: ''});
+        socket.emit('list_ports', {search_keyword: $("#port-search").val()});
     }, 1000);
 
     socket.on("port-list", data => {

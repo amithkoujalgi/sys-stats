@@ -30,7 +30,8 @@ def list_processes(sid, data):
 
 @sio.on('list_ports')
 def list_ports(sid, data):
-    sio.emit("port-list", stats.net_connections())
+    search_keyword = data['search_keyword']
+    sio.emit("port-list", stats.net_connections(search_keyword))
     print('Received message:', data)
 
 

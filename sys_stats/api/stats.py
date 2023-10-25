@@ -103,7 +103,7 @@ def __list_open_ports_with_lsof():
                     fd='NA',
                     family='NA',
                     type='NA',
-                    laddr = dict(ip=parts[8].rsplit(':', 1)[0], port=parts[8].rsplit(':', 1)[1]),
+                    laddr=dict(ip=parts[8].rsplit(':', 1)[0], port=parts[8].rsplit(':', 1)[1]),
                     raddr='NA',
                     status='LISTEN',
                     pid=pid,
@@ -190,18 +190,30 @@ def __list_open_ports_standard():
     return port_mappings
 
 
-def net_connections():
+def net_connections(search_keyword: str = ''):
     """
     Lists TCP ports open for listening
     :return:
     """
+    _port_list = None
     if platform == "darwin":
         # logger.error('net-connections API unsupported on Mac OSX')
-        return __list_open_ports_with_lsof()
+        _port_list = __list_open_ports_with_lsof()
     elif platform == "win32":
         # logger.error('net-connections API unsupported on Windows')
-        return __list_open_ports_netstat_windows()
+        _port_list = __list_open_ports_netstat_windows()
     elif platform == "linux" or platform == "linux2":
-        return __list_open_ports_standard()
+        _port_list = __list_open_ports_standard()
     else:
         logger.error(f'Unknown platform - {platform}')
+
+    if search_keyword == None or search_keyword == '':
+        return _port_list
+
+    _port_list_filtered = []
+    for p in _port_list:
+        if search_keyword in str(p['pid']) or search_keyword in p['laddr']['port'] or search_keyword.lower() in p[
+            'process_name'].lower() or search_keyword.lower() in p['process_cmd'].lower():
+            _port_list_filtered.append(p)
+
+    return _port_list_filtered
