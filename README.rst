@@ -94,6 +94,13 @@ To install the package, use the following pip command:
 
    pip install sys-stats
 
+Note:
+
+   On MacOS, it might fail to install if you do not have ``xcode`` set
+   up. Please set up xcode using the command ``xcode-select --install``
+   and continue with the installation. Meanwhile, I shall find a way to
+   by-pass this step.
+
 PyPI project: https://pypi.org/project/sys-stats/
 
 Then run,
@@ -108,10 +115,7 @@ The process starts up with the following logs:
 
    INFO:root:Starting web server on 0.0.0.0:8070
    INFO:root:Web UI at: http://0.0.0.0:8070
-   INFO:     Started server process [21730]
-   INFO:     Waiting for application startup.
-   INFO:     Application startup complete.
-   INFO:     Uvicorn running on http://0.0.0.0:8070 (Press CTRL+C to quit)
+   (8606) wsgi starting up on http://0.0.0.0:8070
 
 Now, access the web interface at http://localhost:8070
 
@@ -179,7 +183,7 @@ The project is released under the MIT License. For more details, consult
 the `License <./LICENSE>`__ file.
 
 .. |image1| image:: https://img.shields.io/badge/Python-3.8%2B-blue.svg
-.. |image2| image:: https://img.shields.io/badge/sys--stats:_latest_version-0.1.0-green.svg
+.. |image2| image:: https://img.shields.io/badge/sys--stats:_latest_version-0.0.12-green.svg
 .. |image3| image:: https://i.imgur.com/pdHLGi6.png
 .. |image4| image:: https://i.imgur.com/8424Kt4.png
 .. |image5| image:: https://i.imgur.com/VabIFk9.png
