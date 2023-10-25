@@ -45,7 +45,13 @@ $(document).ready(function () {
                         style="font-family: monospace" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-original-title=${process.cmdline}>${process.cmdline}</td>
                     <td style="font-family: monospace">${process.memory_usage}</td>
                     <td style="font-family: monospace">${process.cpu_usage}</td>
-                    <td style="font-family: monospace" class="kill-prc prc-${process.pid}">Kill</td>
+                    <td style="font-family: monospace" class="kill-prc prc-${process.pid}">
+                        <a href="#" class="nav-link py-3 px-2" style="color: red;" title=""
+                           data-bs-toggle="tooltip"
+                           data-bs-placement="right" data-bs-original-title="Terminate process">
+                            <i class="bi-sign-stop fs-1"></i>
+                        </a>
+                    </td>
                 </tr>
             `;
             rows = rows + row;
