@@ -137,6 +137,7 @@ This creates a wheel distribution under `dist` directory.
   plotting resource utilisation graphs.
 - Security measures/user authentication
 - UI improvements - look and feel and slickness
+- Sorting table data by fields
 - Settings view
 - Ability to start the server in background (-d/--daemon mode)
 - Ability to pass an external JSON/YAML configuration file to configure bind address, logging path, etc.
