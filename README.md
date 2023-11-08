@@ -8,7 +8,14 @@ An open-source Python tool to provide system stats over a web interface.
 
 ![](https://img.shields.io/badge/sys--stats:_latest_version-0.0.15-green.svg)
 
-Project Website: https://amithkoujalgi.github.io/sys-stats/
+![GitHub stars](https://img.shields.io/github/stars/amithkoujalgi/sys-stats?style=social)
+![GitHub forks](https://img.shields.io/github/forks/amithkoujalgi/sys-stats?style=social)
+![GitHub watchers](https://img.shields.io/github/watchers/amithkoujalgi/sys-stats?style=social)
+![GitHub repo size](https://img.shields.io/github/repo-size/amithkoujalgi/sys-stats?style=plastic)
+![GitHub language count](https://img.shields.io/github/languages/count/amithkoujalgi/sys-stats?style=plastic)
+![GitHub top language](https://img.shields.io/github/languages/top/amithkoujalgi/sys-stats?style=plastic)
+![GitHub last commit](https://img.shields.io/github/last-commit/amithkoujalgi/sys-stats?color=red&style=plastic)
+![Hits](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2Famithkoujalgi%2Follama4j&count_bg=%2379C83D&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=hits&edge_flat=false)
 
 ## Table of Contents
 
