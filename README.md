@@ -1,5 +1,7 @@
 # sys-stats
 
+<img src='' width='100' alt="sys-stats-icon">
+
 An open-source Python tool to provide system stats over a web interface.
 
 ![](https://img.shields.io/badge/Python-3.8%2B-blue.svg)
