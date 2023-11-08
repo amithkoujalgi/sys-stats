@@ -1,6 +1,6 @@
 # sys-stats
 
-<img src='' width='100' alt="sys-stats-icon">
+<img src='https://raw.githubusercontent.com/amithkoujalgi/sys-stats/main/gh-site/icon.svg' width='100' alt="sys-stats-icon">
 
 An open-source Python tool to provide system stats over a web interface.
 
